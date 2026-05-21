@@ -1,12 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type MouseEvent } from "react"; 
 import {
   motion,
   useMotionValue,
   useSpring,
   useTransform,
-  type MouseEvent,
 } from "framer-motion";
 import { Coins, ShoppingBag, type LucideIcon } from "lucide-react";
 import type { Milestone } from "@/config/data";
