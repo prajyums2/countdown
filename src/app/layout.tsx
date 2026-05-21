@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Nunito, Caveat } from "next/font/google";
 import { DevTimeProvider } from "@/lib/dev-time";
+import ServiceWorkerRegister from "./ServiceWorkerRegister";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -18,6 +19,14 @@ const caveat = Caveat({
 export const metadata: Metadata = {
   title: "Countdown to You ♥",
   description: "A journey of love, milestones, and counting down the moments.",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    apple: "/icon.svg",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#F9A8D4",
 };
 
 export default function RootLayout({
@@ -26,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable} ${caveat.variable}`}>
       <body className="antialiased font-nunito">
+        <ServiceWorkerRegister />
         <DevTimeProvider>{children}</DevTimeProvider>
       </body>
     </html>
