@@ -1,0 +1,4629 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.env.example
+next-env.d.ts
+next.config.mjs
+package.json
+postcss.config.mjs
+scripts/config.csv
+scripts/milestones.csv
+scripts/stations.csv
+SETUP.md
+src/app/api/data/route.ts
+src/app/globals.css
+src/app/layout.tsx
+src/app/not-found.tsx
+src/app/page.tsx
+src/components/AdminPanel.tsx
+src/components/AdminPinGate.tsx
+src/components/DevTimeSlider.tsx
+src/components/HeroCountdown.tsx
+src/components/MapView.tsx
+src/components/MilestoneCard.tsx
+src/components/StationModal.tsx
+src/components/StationsTrack.tsx
+src/components/surprises/BirthdaySurprise.tsx
+src/components/surprises/CandleCake.tsx
+src/components/surprises/CozySurprise.tsx
+src/components/surprises/DateNightSurprise.tsx
+src/components/surprises/DepartureSurprise.tsx
+src/components/surprises/HeartRain.tsx
+src/components/surprises/HugSurprise.tsx
+src/components/surprises/LoveLetter.tsx
+src/components/surprises/SurpriseReveal.tsx
+src/config/data.ts
+src/lib/api.ts
+src/lib/dev-time.tsx
+src/lib/types.ts
+src/lib/upload.ts
+src/scripts/Code.gs
+src/utils/time.ts
+tailwind.config.ts
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".env.example">
+# Google Apps Script web app URL (from Deploy → New Deployment)
+APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
+
+# Admin PIN for CRUD operations
+ADMIN_PIN=2026
+
+# ImgBB API key (free, sign up at imgbb.com)
+# Already has a default dev key in code, swap with yours for production
+NEXT_PUBLIC_IMGBB_KEY=your_key_here
+</file>
+
+<file path="next-env.d.ts">
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/building-your-application/configuring/typescript for more information.
+</file>
+
+<file path="next.config.mjs">
+/** @type {import('next').NextConfig} */
+const nextConfig = {};
+export default nextConfig;
+</file>
+
+<file path="package.json">
+{
+  "name": "countdown",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^0.400.0",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.2.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.4.0"
+  }
+}
+</file>
+
+<file path="postcss.config.mjs">
+/** @type {import('postcss-load-config').Config} */
+const config = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+
+export default config;
+</file>
+
+<file path="scripts/config.csv">
+key,value
+start_location,Thrissur
+end_location,Gurugram
+train_boarding_date,2026-08-04T12:00:00
+arrival_date,2026-08-06T12:00:00
+</file>
+
+<file path="scripts/milestones.csv">
+id,date,title,description,icon,image_url
+m1,2026-06-15,"First Salary! 💸","So incredibly proud of you for securing the bag.",salary,
+m2,2026-07-01,"The H&M Haul 🛍️","Bought completely with your own hard-earned money. Independent and stylish!",shopping,
+</file>
+
+<file path="scripts/stations.csv">
+id,name,emoji,date_time,description,image_url,order_index,event_type,custom_message,spotify_url
+s1,Board at Thrissur,🚂,2026-08-04T12:00,"The adventure begins. Every mile brings me closer to you.",,1,normal,,
+s2,Arrive Gurugram,🏙️,2026-08-06T12:00,"Finally. The 40-hour wait melts away in one hug.",,2,hug,"My heart skipped a beat when I saw you at the station. Nothing else mattered.",,
+s3,Date Night — Cyber Hub,🍝,2026-08-07T19:00,"Italian dinner under the fairy lights, then drinks at Soi 7.",,3,date-night,"Starters: Bruschetta\nMains: Truffle Pasta\nDessert: Tiramisu\n\nThen drinks and dancing until we forget the world exists.",https://open.spotify.com/embed/playlist/37i9dQZF1DX7KNKjOK0o9b
+s4,Her Birthday,🎂,2026-08-09T00:00,"Balloons, cake, and making her feel like the queen she is.",,4,birthday,"Every year with you is a gift. But this one? This one we get to spend together. I love watching you become more of yourself every day. Here's to many more birthdays side by side. ♥",https://open.spotify.com/embed/track/3ixi9Z9Vx1QN1hMlwi4AE1
+s5,Sultanpur Nature Escape,🌿,2026-08-11T10:00,"A quiet day — birds, lakes, and a picnic away from the city noise.",,5,normal,,
+s6,Cozy Staycation,🏡,2026-08-13T12:00,"Homemade brunch, board games, movies, and zero plans.",,6,cozy,"No plans, no rush. Just you, me, and a blanket. Let's order in, watch movies until we fall asleep, and wake up whenever we want. This is what I dream about.",,
+s7,Mall of India Date,🛍️,2026-08-15T16:00,"Shopping, arcade games, and ice cream that melts faster than we do.",,7,date-night,"Shopping list:\n- Something cute for her\n- Something silly for us\n- Ice cream (double scoop)\n- Arcade competition (loser buys dinner)",,
+s8,Rooftop Finale,🌃,2026-08-16T20:00,"Dinner with a view, city lights, and a promise.",,8,surprise,"I love you more than all the city lights below us combined. And that's a lot of lights. This isn't goodbye — it's a promise. The next time we do this, it'll be from our own rooftop.",,
+s9,Departure,👋,2026-08-18T12:00,"Not goodbye. Just 'see you soon' with a heart full of memories.",,9,departure,"See you soon, my love. Distance is just a test of how far love can travel. And ours? It goes the whole way and back. Every goodbye makes the next hello that much sweeter. I'll be counting the days until I'm in your arms again. ♥",
+</file>
+
+<file path="SETUP.md">
+# Setup Guide — Countdown Journey Tracker
+
+## 1. Google Sheet Setup
+
+### 1.1 Create the Sheet
+1. Go to [sheets.new](https://sheets.new)
+2. Rename it to something like "Countdown Journey Tracker"
+3. Create **3 tabs** (sheets) named exactly:
+   - `config`
+   - `stations`
+   - `milestones`
+
+### 1.2 Tab: `config`
+Paste this into row 1 (headers) and row 2 (data):
+
+| key | value |
+|---|---|
+| start_location | Thrissur |
+| end_location | Gurugram |
+| train_boarding_date | 2026-08-04T12:00:00 |
+| arrival_date | 2026-08-06T12:00:00 |
+
+### 1.3 Tab: `stations`
+Paste this as the header row:
+
+| id | name | emoji | date_time | description | image_url | order_index | event_type | custom_message | spotify_url |
+|---|---|---|---|---|---|---|---|---|---|
+
+Then add your stations. Example data:
+
+| id | name | emoji | date_time | description | image_url | order_index | event_type | custom_message | spotify_url |
+|---|---|---|---|---|---|---|---|---|---|
+| s1 | Board at Thrissur | 🚂 | 2026-08-04T12:00 | The adventure begins | | 1 | normal | | |
+| s2 | Arrive Gurugram | 🏙️ | 2026-08-06T12:00 | Finally made it to you | | 2 | hug | My heart skipped a beat when I saw you | |
+| s3 | Date Night — Cyber Hub | 🍝 | 2026-08-07T19:00 | Italian dinner + drinks | | 3 | date-night | Starters: Bruschetta\nMains: Truffle Pasta\nDessert: Tiramisu\n\nThen drinks at Soi 7 under the fairy lights. | https://open.spotify.com/embed/playlist/37i9dQZF1DX7KNKjOK0o9b |
+| s4 | Her Birthday | 🎂 | 2026-08-09T00:00 | Happy Birthday my love | | 4 | birthday | Every year with you is a gift. But this one? This one we get to spend together. I love watching you become more of yourself every day. Here's to many more birthdays side by side. ♥ | https://open.spotify.com/embed/track/3ixi9Z9Vx1QN1hMlwi4AE1 |
+| s5 | Sultanpur Escape | 🌿 | 2026-08-11T10:00 | Bird sanctuary + picnic | | 5 | normal | | |
+| s6 | Cozy Staycation | 🏡 | 2026-08-13T12:00 | Homemade brunch + movies | | 6 | cozy | No plans, no rush. Just you, me, and a blanket. Let's order in, watch movies until we fall asleep, and wake up whenever we want. This is what I dream about. | |
+| s7 | Mall of India | 🛍️ | 2026-08-15T16:00 | Shopping + arcade + ice cream | | 7 | date-night | Shopping list:\n- Something cute for her\n- Something silly for us\n- Ice cream (double scoop)\n- Arcade competition (loser buys dinner) | |
+| s8 | Rooftop Finale | 🌃 | 2026-08-16T20:00 | Dinner with a view | | 8 | surprise | I love you more than all the city lights below us combined. And that's a lot of lights. This isn't goodbye — it's a promise. The next time we do this, it'll be from our own rooftop. | |
+| s9 | Departure | 👋 | 2026-08-18T12:00 | Till next time | | 9 | departure | See you soon, my love. Distance is just a test of how far love can travel. And ours? It goes the whole way and back. Every goodbye makes the next hello that much sweeter. I'll be counting the days until I'm in your arms again. ♥ | |
+
+### 1.4 Tab: `milestones`
+Paste this as the header row:
+
+| id | date | title | description | icon | image_url |
+|---|---|---|---|---|---|
+
+Example data:
+
+| id | date | title | description | icon | image_url |
+|---|---|---|---|---|---|
+| m1 | 2026-06-15 | First Salary! 💸 | So incredibly proud of you for securing the bag. | salary | |
+| m2 | 2026-07-01 | The H&M Haul 🛍️ | Bought completely with your own hard-earned money. Independent and stylish! | shopping | |
+
+### Column Reference
+
+**event_type** options:
+| Value | Effect |
+|---|---|
+| `normal` | Standard modal with description + image |
+| `hug` | Big animated hug emoji + warm message |
+| `date-night` | Heart rain + Spotify embed + menu card |
+| `birthday` | Confetti + candle cake + love letter + memories + Spotify |
+| `cozy` | Blanket fort animation + movie list + cozy note |
+| `surprise` | Gift box to open → reveals message + star rain |
+| `departure` | Memory photo strip + promise letter |
+
+**icon** options (milestones only): `salary` or `shopping`
+
+---
+
+## 2. Apps Script Deployment
+
+### 2.1 Open Apps Script
+1. In your Google Sheet, go to **Extensions → Apps Script**
+2. Delete any default code in the editor
+3. Copy the entire contents of `scripts/Code.gs` and paste it in
+4. Click the save icon (💾) or press `Ctrl + S`
+5. Name the project: `Countdown Journey Tracker`
+
+### 2.2 Deploy
+1. Click **Deploy → New Deployment**
+2. Click the gear icon (⚙️) next to "Select type" → choose **Web app**
+3. Settings:
+   - **Execute as**: `Me`
+   - **Who has access**: `Anyone`
+4. Click **Deploy**
+5. **Copy the Web App URL** — it looks like:
+   ```
+   https://script.google.com/macros/s/AKfycbw.../exec
+   ```
+
+⚠️ **First time?** Google will ask you to review permissions. Click "Review Permissions" → choose your Google account → click "Advanced" → "Go to [your project]" → "Allow"
+
+### 2.3 Update Your App
+1. Open `.env` in your project
+2. Paste the URL:
+   ```
+   APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_COPIED_ID/exec
+   ```
+3. Save and restart the dev server
+
+---
+
+## 3. ImgBB API Key (Image Uploads)
+
+The app uses ImgBB for image uploads (free, no account required).
+
+### Get your key:
+1. Go to [imgbb.com](https://imgbb.com)
+2. Click **Sign Up** (top right) and create a free account
+3. Go to [API page](https://api.imgbb.com)
+4. Copy your API key
+
+### Update the key:
+Open `src/lib/upload.ts` and replace the default key:
+
+```typescript
+const IMGBB_API_KEY = "your_actual_api_key_here";
+```
+
+---
+
+## 4. Running the App
+
+```bash
+# Install dependencies
+npm install --legacy-peer-deps
+
+# Run dev server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+---
+
+## 5. Admin Panel
+
+Your app has a built-in admin panel for managing data:
+
+1. Click the **⚙️ settings icon** (bottom-right corner)
+2. Enter the **admin PIN** (default: `2026`)
+3. Manage stations, milestones, and config in real-time
+4. Upload images directly from the admin forms
+
+**Change the PIN** in `.env`:
+```
+ADMIN_PIN=your_new_pin
+NEXT_PUBLIC_ADMIN_PIN=your_new_pin
+```
+
+---
+
+## 6. Deploy to Vercel (Production)
+
+### 6.1 Prepare
+1. Make sure `.env` has all values filled in
+2. Update the ImgBB API key in `src/lib/upload.ts`
+
+### 6.2 Deploy
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+
+# Or connect your GitHub repo at https://vercel.com/new
+```
+
+### 6.3 Environment Variables on Vercel
+In your Vercel project dashboard → **Settings → Environment Variables**, add:
+
+| Key | Value |
+|---|---|
+| `APPS_SCRIPT_URL` | Your Google Apps Script web app URL |
+| `ADMIN_PIN` | Your chosen admin PIN |
+| `NEXT_PUBLIC_ADMIN_PIN` | Same as ADMIN_PIN (must be identical) |
+
+---
+
+## 7. Dev Time Slider
+
+The **clock icon** (bottom-left) opens the time simulator — useful for testing all journey phases without waiting:
+
+- Toggle **Override time** ON
+- Drag the slider to any date
+- Click station names to jump to that moment
+- Press **Play** to auto-advance time
+- Select speed: `1s = 1h`, `6h`, `1d`, or `7d`
+- Click **Reset** to return to real time
+
+---
+
+## 8. Removing Dev Tools (Production)
+
+When you're ready to go live, delete these files:
+
+```
+src/lib/dev-time.tsx
+src/components/DevTimeSlider.tsx
+```
+
+Then remove from:
+
+- `src/app/layout.tsx` — Remove `<DevTimeProvider>` wrapper
+- `src/app/page.tsx` — Remove `<DevTimeSlider>` import + usage
+- `src/components/HeroCountdown.tsx` — Replace `useNow()` with `new Date()`
+- `src/components/StationsTrack.tsx` — Replace `useNow()` with `new Date()`
+</file>
+
+<file path="src/app/api/data/route.ts">
+import { NextResponse } from "next/server";
+
+const APPS_SCRIPT_URL = process.env.APPS_SCRIPT_URL || "";
+const ADMIN_PIN = process.env.ADMIN_PIN || "2026";
+
+async function fetchAppsScript(url: string, options?: RequestInit) {
+  return fetch(url, {
+    ...options,
+    cache: "no-store",
+    headers: {
+      ...options?.headers,
+      "User-Agent":
+        "Mozilla/5.0 (compatible; Next.js/14)",
+    },
+  });
+}
+
+export async function GET() {
+  if (!APPS_SCRIPT_URL) {
+    return NextResponse.json(
+      { error: "Apps Script URL not configured" },
+      { status: 503 }
+    );
+  }
+
+  try {
+    const res = await fetchAppsScript(APPS_SCRIPT_URL);
+    if (res.ok) {
+      const text = await res.text();
+      return NextResponse.json(JSON.parse(text));
+    }
+  } catch {}
+
+  return NextResponse.redirect(APPS_SCRIPT_URL);
+}
+
+export async function POST(request: Request) {
+  if (!APPS_SCRIPT_URL) {
+    return NextResponse.json(
+      { error: "Apps Script URL not configured" },
+      { status: 503 }
+    );
+  }
+
+  try {
+    const body = await request.json();
+    const { pin, ...rest } = body;
+
+    if (pin !== ADMIN_PIN) {
+      return NextResponse.json({ error: "Invalid admin PIN" }, { status: 401 });
+    }
+
+    const res = await fetchAppsScript(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(rest),
+    });
+
+    if (!res.ok) throw new Error(`Apps Script returned ${res.status}`);
+    const text = await res.text();
+    const data = text ? JSON.parse(text) : null;
+    return NextResponse.json(data);
+  } catch (e) {
+    return NextResponse.json(
+      { error: String(e) },
+      { status: 502 }
+    );
+  }
+}
+</file>
+
+<file path="src/app/globals.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FFF9F6;
+  color: #5D4037;
+  font-family: var(--font-nunito), sans-serif;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+::selection {
+  background-color: #F8BBD0;
+  color: #4E342E;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FCE4EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #F48FB1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F06292;
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bg-paper-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 100px 100px;
+  }
+
+  .bg-grid-lines {
+    background-image: linear-gradient(rgba(244, 143, 177, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244, 143, 177, 0.08) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .text-gradient-rose {
+    background: linear-gradient(135deg, #F06292, #EC407A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-rose {
+    box-shadow: 0 0 25px -6px rgba(240, 98, 146, 0.2),
+                0 0 40px -12px rgba(236, 64, 122, 0.15);
+  }
+
+  .glow-soft {
+    box-shadow: 0 6px 20px -8px rgba(120, 120, 120, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  }
+
+  .pin-style {
+    position: relative;
+  }
+  .pin-style:before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #FFCDD2;
+    border-radius: 50%;
+    border: 2px solid #F48FB1;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .pin-style:after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 4px;
+    background: #F48FB1;
+  }
+
+  .soft-shadow {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  .delicate-border {
+    border: 1px solid #F8BBD0;
+  }
+  
+  .background-gradient {
+    background: linear-gradient(135deg, #FFF5F8 0%, #FFFFFF 100%);
+  }
+}
+</file>
+
+<file path="src/app/layout.tsx">
+import type { Metadata } from "next";
+import { Nunito, Caveat } from "next/font/google";
+import { DevTimeProvider } from "@/lib/dev-time";
+import "./globals.css";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
+  display: "swap",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Countdown to You ♥",
+  description: "A journey of love, milestones, and counting down the moments.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="en" className={`${nunito.variable} ${caveat.variable}`}>
+      <body className="antialiased font-nunito">
+        <DevTimeProvider>{children}</DevTimeProvider>
+      </body>
+    </html>
+  );
+}
+</file>
+
+<file path="src/app/not-found.tsx">
+import Link from "next/link";
+
+export default function NotFound() {
+  return (
+    <main className="min-h-screen bg-[#FAF9F6] flex items-center justify-center px-4">
+      <div className="text-center space-y-4">
+        <h1 className="text-6xl font-caveat text-pink-400">404</h1>
+        <p className="text-slate-500">Page not found</p>
+        <Link
+          href="/"
+          className="inline-block text-sm text-pink-500 underline underline-offset-4 hover:text-pink-600 transition-colors"
+        >
+          Go home
+        </Link>
+      </div>
+    </main>
+  );
+}
+</file>
+
+<file path="src/app/page.tsx">
+"use client";
+
+import { useEffect, useState, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Settings, Heart } from "lucide-react";
+
+import { siteConfig } from "@/config/data";
+import type { Station, Milestone, JourneyConfig, SheetData } from "@/lib/types";
+import type { Milestone as StaticMilestone } from "@/config/data";
+import { fetchData } from "@/lib/api";
+import { getJourneyProgress } from "@/utils/time";
+
+import HeroCountdown from "@/components/HeroCountdown";
+import MapView from "@/components/MapView";
+import StationsTrack from "@/components/StationsTrack";
+import StationModal from "@/components/StationModal";
+import MilestoneCard from "@/components/MilestoneCard";
+import AdminPinGate from "@/components/AdminPinGate";
+import AdminPanel from "@/components/AdminPanel";
+import DevTimeSlider from "@/components/DevTimeSlider";
+
+function mapStaticMilestone(m: StaticMilestone, index: number): Milestone {
+  return {
+    id: m.id || `m-static-${index}`,
+    date: m.date,
+    title: m.title,
+    description: m.description,
+    icon: m.icon,
+    imageUrl: "",
+  };
+}
+
+const fallbackConfig: JourneyConfig = {
+  startLocation: siteConfig.journey.startLocation,
+  endLocation: siteConfig.journey.endLocation,
+  trainBoardingDate: siteConfig.journey.trainBoardingDate,
+  arrivalDate: siteConfig.journey.arrivalDate,
+};
+
+function SectionDivider() {
+  return (
+    <div className="flex items-center justify-center gap-3 py-2">
+      <span className="h-px w-12 bg-gradient-to-r from-transparent via-rose-200 to-transparent" />
+      <motion.span
+        className="text-rose-300 text-sm"
+        animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 3, repeat: Infinity }}
+      >
+        ♥
+      </motion.span>
+      <span className="h-px w-12 bg-gradient-to-r from-transparent via-rose-200 to-transparent" />
+    </div>
+  );
+}
+
+function FloatingBgHeart({ delay, left, size, duration }: { delay: number; left: number; size: number; duration: number }) {
+  return (
+    <motion.span
+      className="fixed text-rose-100 select-none pointer-events-none z-0"
+      style={{ left: `${left}%`, bottom: -20, fontSize: size }}
+      initial={{ y: 0, opacity: 0 }}
+      animate={{
+        y: [0, -1200],
+        opacity: [0, 0.4, 0.2, 0],
+      }}
+      transition={{ duration, delay, repeat: Infinity, ease: "linear" }}
+    >
+      ♥
+    </motion.span>
+  );
+}
+
+export default function Home() {
+  const [data, setData] = useState<SheetData | null>(null);
+  const [selectedStation, setSelectedStation] = useState<Station | null>(null);
+  const [showAdminPin, setShowAdminPin] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const loadData = useCallback(async () => {
+    try {
+      const result = await fetchData();
+      if (result.config && result.stations) setData(result);
+      else setData(null);
+    } catch {
+      setData(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData, refreshKey]);
+
+  const config = data?.config || fallbackConfig;
+  const stations: Station[] = data?.stations || [];
+  const milestones: Milestone[] = data?.milestones || siteConfig.milestones.map(mapStaticMilestone);
+
+  const boarding = new Date(config.trainBoardingDate);
+  const arrival = new Date(config.arrivalDate);
+
+  const handleStationClick = (station: Station) => setSelectedStation(station);
+  const handleAdminUnlock = () => {
+    setShowAdminPin(false);
+    setShowAdmin(true);
+  };
+
+  return (
+    <main className="min-h-screen bg-[#FFF9F6] bg-paper-texture px-4 py-8 md:py-16 relative">
+      <div className="fixed inset-0 bg-grid-lines opacity-[0.05] pointer-events-none" />
+      <FloatingBgHeart delay={0} left={5} size={24} duration={28} />
+      <FloatingBgHeart delay={5} left={15} size={16} duration={32} />
+      <FloatingBgHeart delay={10} left={85} size={20} duration={26} />
+      <FloatingBgHeart delay={15} left={92} size={14} duration={35} />
+      <FloatingBgHeart delay={8} left={50} size={18} duration={30} />
+      <FloatingBgHeart delay={3} left={35} size={22} duration={24} />
+      <FloatingBgHeart delay={12} left={75} size={18} duration={36} />
+      <FloatingBgHeart delay={18} left={15} size={14} duration={28} />
+      <FloatingBgHeart delay={7} left={88} size={16} duration={32} />
+
+      <div className="relative z-10 max-w-[1200px] mx-auto">
+        <header className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="inline-block px-4 py-1 bg-rose-50/80 text-rose-400 text-[0.6rem] uppercase tracking-[0.2em] font-semibold rounded-full border border-rose-100/50 delicate-border">
+              A love story in transit
+            </span>
+          </motion.div>
+
+          <motion.h1
+            className="text-4xl md:text-5xl font-caveat text-gradient-rose mb-4"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+          >
+            {config.startLocation}
+            <motion.span
+              className="inline-block mx-2 text-rose-300"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              ♥
+            </motion.span>
+            {config.endLocation}
+          </motion.h1>
+
+          <motion.p
+            className="text-sm text-slate-400 font-caveat"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            Every mile brings us closer
+          </motion.p>
+        </header>
+
+        <HeroCountdown config={config} className="mb-12" />
+
+        {stations.length > 0 && (
+          <>
+            <SectionDivider className="mb-8" />
+            <MapView stations={stations} className="mb-12" />
+          </>
+        )}
+
+        <SectionDivider className="mb-8" />
+
+        <StationsTrack key={refreshKey} stations={stations} onStationClick={handleStationClick} className="mb-12" />
+
+        <SectionDivider className="mb-8" />
+
+        <section className="mb-12">
+          <div className="text-center mb-6">
+            <div className="flex items-center justify-center gap-3">
+              <span className="h-px w-8 bg-gradient-to-r from-transparent to-rose-200" />
+              <h2 className="text-2xl font-caveat text-gradient-rose">Our Milestones</h2>
+              <span className="h-px w-8 bg-gradient-to-l from-transparent to-rose-200" />
+            </div>
+            <p className="text-sm text-slate-400 font-caveat">
+              Celebrating every step of the way
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-3">
+            {milestones.map((milestone, i) => (
+              <MilestoneCard
+                key={milestone.id}
+                milestone={milestone as unknown as StaticMilestone}
+                index={i}
+                imageUrl={(milestone as Milestone).imageUrl}
+                className="pin-style"
+              />
+            ))}
+          </div>
+        </section>
+
+        <SectionDivider className="mb-8" />
+
+        <footer className="text-center pb-8">
+          <div className="flex items-center justify-center gap-1 text-xs text-slate-400 font-caveat mb-4">
+            <span>Made with</span>
+            <Heart size={10} className="text-rose-300 fill-rose-300" />
+            <span>from across the distance</span>
+          </div>
+          <p className="text-[0.55rem] text-slate-300 font-caveat">
+            {config.startLocation} &middot; {config.endLocation}
+          </p>
+        </footer>
+      </div>
+
+      <StationModal station={selectedStation} allStations={stations} onClose={() => setSelectedStation(null)} />
+
+      <AnimatePresence>
+        {showAdminPin && <AdminPinGate onUnlock={handleAdminUnlock} />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showAdmin && (
+          <AdminPanel
+            stations={stations}
+            milestones={milestones}
+            config={config}
+            onRefresh={() => { setRefreshKey((k) => k + 1); setShowAdmin(false); }}
+            onClose={() => setShowAdmin(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      <DevTimeSlider stations={stations} boardingDate={boarding} arrivalDate={arrival} className="mb-8" />
+
+      <button
+        onClick={() => setShowAdminPin(true)}
+        className="fixed bottom-6 right-6 z-30 p-3 rounded-full bg-white/80 backdrop-blur-md border border-rose-100/50 shadow-md shadow-rose-200/50 text-rose-400 hover:text-rose-500 hover:bg-white/90 transition-all pin-style"
+        title="Admin"
+      >
+        <Settings size={20} />
+      </button>
+    </main>
+  );
+}
+</file>
+
+<file path="src/components/AdminPanel.tsx">
+"use client";
+
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  Plus,
+  Trash2,
+  Edit3,
+  Save,
+  Upload,
+  GripVertical,
+  RefreshCw,
+} from "lucide-react";
+import type { Station, Milestone, JourneyConfig, StationEventType } from "@/lib/types";
+import { uploadImage } from "@/lib/upload";
+import {
+  addStation,
+  updateStation,
+  deleteStation,
+  reorderStations,
+  addMilestone,
+  updateMilestone,
+  deleteMilestone,
+  updateConfig,
+} from "@/lib/api";
+
+type Tab = "stations" | "milestones" | "config";
+
+const pin = process.env.NEXT_PUBLIC_ADMIN_PIN || "2026";
+
+const eventTypes: StationEventType[] = [
+  "normal",
+  "hug",
+  "date-night",
+  "birthday",
+  "cozy",
+  "surprise",
+  "departure",
+];
+
+function ImageUploader({
+  currentUrl,
+  onUpload,
+}: {
+  currentUrl: string;
+  onUpload: (url: string) => void;
+}) {
+  const [uploading, setUploading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const url = await uploadImage(file);
+      onUpload(url);
+    } catch {
+      alert("Upload failed");
+    }
+    setUploading(false);
+  };
+
+  return (
+    <div className="flex items-center gap-2">
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleFile}
+      />
+      <button
+        type="button"
+        onClick={() => inputRef.current?.click()}
+        disabled={uploading}
+        className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-rose-50 text-rose-500 hover:bg-rose-100 transition-colors disabled:opacity-50"
+      >
+        {uploading ? (
+          <RefreshCw size={12} className="animate-spin" />
+        ) : (
+          <Upload size={12} />
+        )}
+        {uploading ? "Uploading..." : currentUrl ? "Change" : "Upload"}
+      </button>
+      {currentUrl && (
+        <a
+          href={currentUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="text-xs text-rose-400 underline truncate max-w-[120px]"
+        >
+          View
+        </a>
+      )}
+    </div>
+  );
+}
+
+function StationForm({
+  station,
+  onSave,
+  onCancel,
+}: {
+  station?: Station;
+  onSave: (data: Partial<Station>) => void;
+  onCancel: () => void;
+}) {
+  const [name, setName] = useState(station?.name || "");
+  const [emoji, setEmoji] = useState(station?.emoji || "📍");
+  const [dateTime, setDateTime] = useState(station?.dateTime?.slice(0, 16) || "");
+  const [description, setDescription] = useState(station?.description || "");
+  const [imageUrl, setImageUrl] = useState(station?.imageUrl || "");
+  const [eventType, setEventType] = useState<StationEventType>(
+    station?.eventType || "normal"
+  );
+  const [customMessage, setCustomMessage] = useState(station?.customMessage || "");
+  const [spotifyUrl, setSpotifyUrl] = useState(station?.spotifyUrl || "");
+
+  return (
+    <div className="space-y-3 p-4 bg-rose-50/50 rounded-xl border border-rose-100">
+      <div className="grid grid-cols-2 gap-3">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Station name"
+          className="col-span-2 px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+        />
+        <input
+          value={emoji}
+          onChange={(e) => setEmoji(e.target.value)}
+          placeholder="Emoji"
+          className="px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+        />
+        <input
+          type="datetime-local"
+          value={dateTime}
+          onChange={(e) => setDateTime(e.target.value)}
+          className="px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+        />
+      </div>
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="Description"
+        rows={2}
+        className="w-full px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300 resize-none"
+      />
+      <div className="grid grid-cols-2 gap-3">
+        <select
+          value={eventType}
+          onChange={(e) => setEventType(e.target.value as StationEventType)}
+          className="px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+        >
+          {eventTypes.map((t) => (
+            <option key={t} value={t}>{t}</option>
+          ))}
+        </select>
+        <ImageUploader currentUrl={imageUrl} onUpload={setImageUrl} />
+      </div>
+      <textarea
+        value={customMessage}
+        onChange={(e) => setCustomMessage(e.target.value)}
+        placeholder="Custom message (love letter, promise, etc.)"
+        rows={3}
+        className="w-full px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300 resize-none"
+      />
+      <input
+        value={spotifyUrl}
+        onChange={(e) => setSpotifyUrl(e.target.value)}
+        placeholder="Spotify embed URL (optional)"
+        className="w-full px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+      />
+      <div className="flex gap-2 justify-end">
+        <button
+          onClick={onCancel}
+          className="px-4 py-1.5 text-xs rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={() =>
+            onSave({ name, emoji, dateTime, description, imageUrl, eventType, customMessage, spotifyUrl })
+          }
+          className="px-4 py-1.5 text-xs rounded-lg bg-rose-400 text-white hover:bg-rose-500"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function MilestoneForm({
+  milestone,
+  onSave,
+  onCancel,
+}: {
+  milestone?: Milestone;
+  onSave: (data: Partial<Milestone>) => void;
+  onCancel: () => void;
+}) {
+  const [title, setTitle] = useState(milestone?.title || "");
+  const [date, setDate] = useState(milestone?.date?.slice(0, 10) || "");
+  const [description, setDescription] = useState(milestone?.description || "");
+  const [icon, setIcon] = useState<"salary" | "shopping">(
+    milestone?.icon || "salary"
+  );
+  const [imageUrl, setImageUrl] = useState(milestone?.imageUrl || "");
+
+  return (
+    <div className="space-y-3 p-4 bg-rose-50/50 rounded-xl border border-rose-100">
+      <div className="grid grid-cols-2 gap-3">
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
+          className="col-span-2 px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+        />
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+        />
+        <select
+          value={icon}
+          onChange={(e) => setIcon(e.target.value as "salary" | "shopping")}
+          className="px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+        >
+          <option value="salary">Salary</option>
+          <option value="shopping">Shopping</option>
+        </select>
+      </div>
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="Description"
+        rows={2}
+        className="w-full px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300 resize-none"
+      />
+      <ImageUploader currentUrl={imageUrl} onUpload={setImageUrl} />
+      <div className="flex gap-2 justify-end">
+        <button
+          onClick={onCancel}
+          className="px-4 py-1.5 text-xs rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={() => onSave({ title, date, description, icon, imageUrl })}
+          className="px-4 py-1.5 text-xs rounded-lg bg-rose-400 text-white hover:bg-rose-500"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default function AdminPanel({
+  stations,
+  milestones,
+  config,
+  onRefresh,
+  onClose,
+}: {
+  stations: Station[];
+  milestones: Milestone[];
+  config: JourneyConfig;
+  onRefresh: () => void;
+  onClose: () => void;
+}) {
+  const [tab, setTab] = useState<Tab>("stations");
+  const [showForm, setShowForm] = useState(false);
+  const [editing, setEditing] = useState<Station | Milestone | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  const [startLocation, setStartLocation] = useState(config.startLocation);
+  const [endLocation, setEndLocation] = useState(config.endLocation);
+  const [boardingDate, setBoardingDate] = useState(
+    config.trainBoardingDate?.slice(0, 16) || ""
+  );
+  const [arrivalDate, setArrivalDate] = useState(
+    config.arrivalDate?.slice(0, 16) || ""
+  );
+
+  const handleSaveStation = async (data: Partial<Station>) => {
+    setSaving(true);
+    try {
+      if (editing) {
+        await updateStation({ ...(editing as Station), ...data }, pin);
+      } else {
+        await addStation(
+          { ...data, id: "", orderIndex: stations.length + 1 } as Station,
+          pin
+        );
+      }
+      setShowForm(false);
+      setEditing(null);
+      onRefresh();
+    } catch (e) {
+      alert("Failed to save station");
+    }
+    setSaving(false);
+  };
+
+  const handleDeleteStation = async (id: string) => {
+    if (!confirm("Delete this station?")) return;
+    try {
+      await deleteStation(id, pin);
+      onRefresh();
+    } catch {
+      alert("Failed to delete");
+    }
+  };
+
+  const handleSaveMilestone = async (data: Partial<Milestone>) => {
+    setSaving(true);
+    try {
+      if (editing) {
+        await updateMilestone({ ...(editing as Milestone), ...data }, pin);
+      } else {
+        await addMilestone({ ...data, id: "" } as Milestone, pin);
+      }
+      setShowForm(false);
+      setEditing(null);
+      onRefresh();
+    } catch {
+      alert("Failed to save milestone");
+    }
+    setSaving(false);
+  };
+
+  const handleDeleteMilestone = async (id: string) => {
+    if (!confirm("Delete this milestone?")) return;
+    try {
+      await deleteMilestone(id, pin);
+      onRefresh();
+    } catch {
+      alert("Failed to delete");
+    }
+  };
+
+  const handleSaveConfig = async () => {
+    setSaving(true);
+    try {
+      await updateConfig(
+        {
+          startLocation,
+          endLocation,
+          trainBoardingDate: boardingDate + ":00",
+          arrivalDate: arrivalDate + ":00",
+        },
+        pin
+      );
+      onRefresh();
+    } catch {
+      alert("Failed to update config");
+    }
+    setSaving(false);
+  };
+
+  const sortedStations = [...stations].sort(
+    (a, b) => a.orderIndex - b.orderIndex
+  );
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-40 flex justify-end"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div
+        className="absolute inset-0 bg-black/10"
+        onClick={onClose}
+      />
+
+      <motion.div
+        className="relative w-full max-w-md bg-white shadow-2xl shadow-rose-900/10 h-full overflow-y-auto"
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={{ type: "spring", stiffness: 200, damping: 26 }}
+      >
+        <div className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-rose-50 z-10 p-4 flex items-center justify-between">
+          <h2 className="font-nunito font-semibold text-slate-700">
+            Admin Panel
+          </h2>
+          <button
+            onClick={onClose}
+            className="p-1.5 rounded-full hover:bg-rose-50 text-slate-400 hover:text-rose-500"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="flex border-b border-rose-50">
+          {(["stations", "milestones", "config"] as Tab[]).map((t) => (
+            <button
+              key={t}
+              onClick={() => {
+                setTab(t);
+                setShowForm(false);
+                setEditing(null);
+              }}
+              className={`flex-1 py-3 text-xs font-semibold uppercase tracking-wider transition-colors ${
+                tab === t
+                  ? "text-rose-500 border-b-2 border-rose-400"
+                  : "text-slate-400 hover:text-slate-600"
+              }`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
+
+        <div className="p-4">
+          {tab === "stations" && (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <p className="text-xs text-slate-400">
+                  {sortedStations.length} stations
+                </p>
+                <button
+                  onClick={() => {
+                    setEditing(null);
+                    setShowForm(!showForm);
+                  }}
+                  className="flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg bg-rose-400 text-white hover:bg-rose-500"
+                >
+                  <Plus size={12} /> Add
+                </button>
+              </div>
+
+              {showForm && (
+                <StationForm
+                  station={editing as Station}
+                  onSave={handleSaveStation}
+                  onCancel={() => {
+                    setShowForm(false);
+                    setEditing(null);
+                  }}
+                />
+              )}
+
+              <div className="space-y-2">
+                {sortedStations.map((s, i) => (
+                  <div
+                    key={s.id}
+                    className="flex items-center gap-2 p-3 bg-rose-50/30 rounded-xl border border-rose-50"
+                  >
+                    <span className="text-xs text-slate-300 w-4">{i + 1}</span>
+                    <span className="text-lg">{s.emoji}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-slate-700 truncate">
+                        {s.name}
+                      </p>
+                      <p className="text-[0.6rem] text-slate-400 font-caveat">
+                        {s.dateTime?.slice(0, 10)} — {s.eventType}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setEditing(s);
+                        setShowForm(true);
+                      }}
+                      className="p-1.5 rounded-lg hover:bg-white text-slate-400 hover:text-rose-500"
+                    >
+                      <Edit3 size={12} />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteStation(s.id)}
+                      className="p-1.5 rounded-lg hover:bg-white text-slate-400 hover:text-red-400"
+                    >
+                      <Trash2 size={12} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {tab === "milestones" && (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <p className="text-xs text-slate-400">
+                  {milestones.length} milestones
+                </p>
+                <button
+                  onClick={() => {
+                    setEditing(null);
+                    setShowForm(!showForm);
+                  }}
+                  className="flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg bg-rose-400 text-white hover:bg-rose-500"
+                >
+                  <Plus size={12} /> Add
+                </button>
+              </div>
+
+              {showForm && (
+                <MilestoneForm
+                  milestone={editing as Milestone}
+                  onSave={handleSaveMilestone}
+                  onCancel={() => {
+                    setShowForm(false);
+                    setEditing(null);
+                  }}
+                />
+              )}
+
+              <div className="space-y-2">
+                {milestones.map((m) => (
+                  <div
+                    key={m.id}
+                    className="flex items-center gap-2 p-3 bg-rose-50/30 rounded-xl border border-rose-50"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-slate-700 truncate">
+                        {m.title}
+                      </p>
+                      <p className="text-[0.6rem] text-slate-400 font-caveat">
+                        {m.date}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setEditing(m);
+                        setShowForm(true);
+                      }}
+                      className="p-1.5 rounded-lg hover:bg-white text-slate-400 hover:text-rose-500"
+                    >
+                      <Edit3 size={12} />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteMilestone(m.id)}
+                      className="p-1.5 rounded-lg hover:bg-white text-slate-400 hover:text-red-400"
+                    >
+                      <Trash2 size={12} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {tab === "config" && (
+            <div className="space-y-4">
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <label className="text-[0.6rem] uppercase tracking-wider text-slate-400 font-semibold">
+                      Start Location
+                    </label>
+                    <input
+                      value={startLocation}
+                      onChange={(e) => setStartLocation(e.target.value)}
+                      className="w-full px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[0.6rem] uppercase tracking-wider text-slate-400 font-semibold">
+                      End Location
+                    </label>
+                    <input
+                      value={endLocation}
+                      onChange={(e) => setEndLocation(e.target.value)}
+                      className="w-full px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <label className="text-[0.6rem] uppercase tracking-wider text-slate-400 font-semibold">
+                      Boarding Date
+                    </label>
+                    <input
+                      type="datetime-local"
+                      value={boardingDate}
+                      onChange={(e) => setBoardingDate(e.target.value)}
+                      className="w-full px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[0.6rem] uppercase tracking-wider text-slate-400 font-semibold">
+                      Arrival Date
+                    </label>
+                    <input
+                      type="datetime-local"
+                      value={arrivalDate}
+                      onChange={(e) => setArrivalDate(e.target.value)}
+                      className="w-full px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
+                    />
+                  </div>
+                </div>
+                <button
+                  onClick={handleSaveConfig}
+                  disabled={saving}
+                  className="w-full py-2.5 rounded-xl bg-rose-400 text-white text-sm font-semibold hover:bg-rose-500 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                >
+                  {saving ? (
+                    <RefreshCw size={14} className="animate-spin" />
+                  ) : (
+                    <Save size={14} />
+                  )}
+                  Save Config
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/AdminPinGate.tsx">
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Lock } from "lucide-react";
+
+const ADMIN_PIN = process.env.NEXT_PUBLIC_ADMIN_PIN || "2026";
+
+export default function AdminPinGate({
+  onUnlock,
+}: {
+  onUnlock: () => void;
+}) {
+  const [pin, setPin] = useState("");
+  const [error, setError] = useState(false);
+  const [show, setShow] = useState(true);
+
+  const handleSubmit = () => {
+    if (pin === ADMIN_PIN) {
+      setShow(false);
+      onUnlock();
+    } else {
+      setError(true);
+      setTimeout(() => setError(false), 1500);
+    }
+  };
+
+  return (
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div
+            className="bg-white rounded-[2rem] shadow-2xl shadow-rose-900/10 p-8 w-full max-w-xs text-center space-y-5"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 150, damping: 18 }}
+          >
+            <div className="flex justify-center">
+              <div className="p-3 rounded-full bg-rose-50">
+                <Lock size={24} className="text-rose-400" />
+              </div>
+            </div>
+            <div className="space-y-1">
+              <h3 className="font-nunito font-semibold text-slate-700">
+                Admin Access
+              </h3>
+              <p className="text-xs text-slate-400 font-caveat">
+                Enter PIN to manage stations & milestones
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <input
+                type="password"
+                value={pin}
+                onChange={(e) => {
+                  setPin(e.target.value);
+                  setError(false);
+                }}
+                onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+                placeholder="Enter PIN"
+                className={`w-full text-center text-lg tracking-[0.3em] px-4 py-3 rounded-xl border ${
+                  error ? "border-red-300 bg-red-50" : "border-rose-100 bg-rose-50/50"
+                } outline-none focus:border-rose-300 transition-colors font-nunito`}
+                autoFocus
+                maxLength={10}
+              />
+
+              {error && (
+                <motion.p
+                  className="text-xs text-red-400 font-caveat"
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  Incorrect PIN. Try again.
+                </motion.p>
+              )}
+
+              <button
+                onClick={handleSubmit}
+                className="w-full py-2.5 rounded-xl bg-rose-400 text-white text-sm font-semibold hover:bg-rose-500 transition-colors shadow-sm"
+              >
+                Unlock
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+</file>
+
+<file path="src/components/DevTimeSlider.tsx">
+"use client";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Clock, Play, Pause, SkipBack, SkipForward, X } from "lucide-react";
+import { useDevTime } from "@/lib/dev-time";
+import type { Station } from "@/lib/types";
+
+const SPEED_OPTIONS = [
+  { label: "1s = 1h", value: 3600000 },
+  { label: "1s = 6h", value: 21600000 },
+  { label: "1s = 1d", value: 86400000 },
+  { label: "1s = 7d", value: 604800000 },
+];
+
+export default function DevTimeSlider({
+  stations,
+  boardingDate,
+  arrivalDate,
+}: {
+  stations: Station[];
+  boardingDate: Date;
+  arrivalDate: Date;
+}) {
+  const { devNow, setDevNow, enabled, setEnabled, minDate, maxDate, setMinDate, setMaxDate } = useDevTime();
+  const [open, setOpen] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [speedIdx, setSpeedIdx] = useState(1);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [sliderVal, setSliderVal] = useState(50);
+
+  const rangeMin = minDate.getTime();
+  const rangeMax = maxDate.getTime();
+  const rangeSpan = rangeMax - rangeMin;
+
+  useEffect(() => {
+    const threeMonths = 90 * 86400000;
+    const start = new Date(boardingDate.getTime() - threeMonths);
+    const end = new Date(arrivalDate.getTime() + threeMonths);
+    setMinDate(start);
+    setMaxDate(end);
+  }, [boardingDate, arrivalDate]);
+
+  const sorted = [...stations].sort((a, b) => a.orderIndex - b.orderIndex);
+
+  const updateFromSlider = useCallback(
+    (val: number) => {
+      setSliderVal(val);
+      const t = rangeMin + (val / 100) * rangeSpan;
+      setDevNow(new Date(t));
+    },
+    [rangeMin, rangeSpan, setDevNow]
+  );
+
+  const jumpToStation = useCallback(
+    (station: Station) => {
+      const t = new Date(station.dateTime).getTime();
+      const val = Math.max(0, Math.min(100, ((t - rangeMin) / rangeSpan) * 100));
+      updateFromSlider(val);
+    },
+    [rangeMin, rangeSpan, updateFromSlider]
+  );
+
+  const jumpToNow = useCallback(() => {
+    const t = Date.now();
+    const val = Math.max(0, Math.min(100, ((t - rangeMin) / rangeSpan) * 100));
+    updateFromSlider(val);
+    setDevNow(null);
+    setEnabled(false);
+  }, [rangeMin, rangeSpan, updateFromSlider, setDevNow, setEnabled]);
+
+  useEffect(() => {
+    if (!enabled || !devNow) {
+      const t = Date.now();
+      const val = Math.max(0, Math.min(100, ((t - rangeMin) / rangeSpan) * 100));
+      setSliderVal(val);
+    } else {
+      const t = devNow.getTime();
+      const val = Math.max(0, Math.min(100, ((t - rangeMin) / rangeSpan) * 100));
+      setSliderVal(val);
+    }
+  }, [enabled, devNow, rangeMin, rangeSpan]);
+
+  useEffect(() => {
+    if (playing && enabled) {
+      intervalRef.current = setInterval(() => {
+        const speed = SPEED_OPTIONS[speedIdx].value;
+        setDevNow((prev) => {
+          const next = new Date((prev || new Date()).getTime() + speed);
+          if (next > maxDate) {
+            setPlaying(false);
+            return maxDate;
+          }
+          return next;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [playing, enabled, speedIdx, maxDate, setDevNow]);
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen(!open)}
+        className="fixed bottom-6 left-6 z-30 p-3 rounded-full bg-white/70 backdrop-blur-md border border-rose-100 shadow-lg shadow-rose-900/5 text-rose-400 hover:text-rose-500 hover:bg-white transition-all"
+        title="Dev time slider"
+      >
+        <Clock size={20} />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed bottom-20 left-4 right-4 md:left-6 md:right-auto md:w-96 z-30 bg-white/90 backdrop-blur-xl border border-rose-100 rounded-2xl shadow-xl shadow-rose-900/10 p-5 space-y-4"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 200, damping: 22 }}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Clock size={16} className="text-rose-400" />
+                <span className="text-sm font-nunito font-semibold text-slate-700">
+                  Time Simulator
+                </span>
+              </div>
+              <button
+                onClick={() => setOpen(false)}
+                className="p-1 rounded-full hover:bg-rose-50 text-slate-400 hover:text-rose-500"
+              >
+                <X size={14} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-slate-400">Override time</span>
+              <button
+                onClick={() => {
+                  if (enabled) {
+                    setEnabled(false);
+                    setDevNow(null);
+                    setPlaying(false);
+                  } else {
+                    setEnabled(true);
+                    setDevNow(new Date(rangeMin + (sliderVal / 100) * rangeSpan));
+                  }
+                }}
+                className={`relative w-10 h-5 rounded-full transition-colors ${
+                  enabled ? "bg-rose-400" : "bg-slate-200"
+                }`}
+              >
+                <span
+                  className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform ${
+                    enabled ? "translate-x-5" : "translate-x-0.5"
+                  }`}
+                />
+              </button>
+            </div>
+
+            {enabled && devNow && (
+              <>
+                <div className="text-center">
+                  <p className="text-lg font-caveat text-rose-500">
+                    {devNow.toLocaleDateString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </p>
+                  <p className="text-xs text-slate-400 font-caveat">
+                    {devNow.toLocaleTimeString("en-US", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={sliderVal}
+                    onChange={(e) => updateFromSlider(Number(e.target.value))}
+                    className="w-full h-1.5 rounded-full appearance-none cursor-pointer accent-rose-400 bg-rose-100"
+                  />
+                  <div className="flex justify-between text-[0.5rem] text-slate-300">
+                    <span>{minDate.toLocaleDateString("en-US", { month: "short", day: "numeric" })}</span>
+                    <span>{maxDate.toLocaleDateString("en-US", { month: "short", day: "numeric" })}</span>
+                  </div>
+                </div>
+
+                {sorted.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {sorted.map((s) => {
+                      const t = new Date(s.dateTime).getTime();
+                      const isPast = t <= (devNow?.getTime() || 0);
+                      return (
+                        <button
+                          key={s.id}
+                          onClick={() => jumpToStation(s)}
+                          className={`text-[0.55rem] px-2 py-1 rounded-full border transition-colors ${
+                            isPast
+                              ? "bg-rose-50 border-rose-200 text-rose-500"
+                              : "bg-white border-rose-100 text-slate-400 hover:bg-rose-50"
+                          }`}
+                        >
+                          {s.emoji} {s.name}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                <div className="flex items-center justify-center gap-3">
+                  <button
+                    onClick={() => jumpToStation(sorted[0])}
+                    className="p-1.5 rounded-lg hover:bg-rose-50 text-slate-400 hover:text-rose-500"
+                    title="Jump to start"
+                  >
+                    <SkipBack size={14} />
+                  </button>
+
+                  <button
+                    onClick={() => setPlaying(!playing)}
+                    className={`p-2 rounded-full transition-colors ${
+                      playing
+                        ? "bg-rose-100 text-rose-500"
+                        : "bg-rose-50 text-rose-400 hover:bg-rose-100"
+                    }`}
+                    title={playing ? "Pause" : "Play"}
+                  >
+                    {playing ? <Pause size={16} /> : <Play size={16} />}
+                  </button>
+
+                  <button
+                    onClick={() => jumpToStation(sorted[sorted.length - 1])}
+                    className="p-1.5 rounded-lg hover:bg-rose-50 text-slate-400 hover:text-rose-500"
+                    title="Jump to end"
+                  >
+                    <SkipForward size={14} />
+                  </button>
+
+                  <select
+                    value={speedIdx}
+                    onChange={(e) => setSpeedIdx(Number(e.target.value))}
+                    className="ml-2 text-[0.55rem] px-2 py-1 rounded-lg border border-rose-100 bg-white text-slate-500 outline-none"
+                  >
+                    {SPEED_OPTIONS.map((opt, i) => (
+                      <option key={i} value={i}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <button
+                  onClick={jumpToNow}
+                  className="w-full py-1.5 text-[0.6rem] rounded-lg border border-rose-100 text-slate-400 hover:bg-rose-50 transition-colors font-caveat"
+                >
+                  ↩ Reset to current time
+                </button>
+              </>
+            )}
+
+            {(!enabled || !devNow) && (
+              <p className="text-xs text-slate-400 font-caveat text-center py-2">
+                Toggle on to simulate a different date/time
+              </p>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+</file>
+
+<file path="src/components/HeroCountdown.tsx">
+"use client";
+
+import { useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  getCountdown,
+  getJourneyPhase,
+  type JourneyPhase,
+} from "@/utils/time";
+import type { JourneyConfig } from "@/lib/types";
+import { useNow } from "@/lib/dev-time";
+
+const phrases: Record<JourneyPhase, { heading: string; sub: string }> = {
+  "pre-boarding": {
+    heading: "Counting down the seconds until I'm on my way...",
+    sub: "Almost time to board!",
+  },
+  "in-transit": {
+    heading: "All aboard! Next stop: You.",
+    sub: "Choo-choo! Here I come!",
+  },
+  arrived: {
+    heading: "Together at last!",
+    sub: "The journey is complete.",
+  },
+};
+
+function Sparkle({ delay, x, y, size }: { delay: number; x: number; y: number; size: number }) {
+  return (
+    <motion.span
+      className="absolute text-yellow-200 select-none pointer-events-none"
+      style={{ left: `${x}%`, top: `${y}%`, fontSize: size }}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: [0, 1, 0], scale: [0, 1.2, 0] }}
+      transition={{ duration: 2.5, delay, repeat: Infinity, ease: "easeInOut" }}
+    >
+      ✦
+    </motion.span>
+  );
+}
+
+function FloatingHeart({ delay, x, y }: { delay: number; x: number; y: number }) {
+  return (
+    <motion.span
+      className="absolute text-rose-200 select-none pointer-events-none"
+      style={{ left: `${x}%`, top: `${y}%` }}
+      initial={{ y: 0, opacity: 0.6, scale: 0.6 }}
+      animate={{
+        y: [0, -60, -120],
+        opacity: [0.6, 0.3, 0],
+        scale: [0.6, 1.1, 0.3],
+      }}
+      transition={{ duration: 4, delay, repeat: Infinity, ease: "easeOut" }}
+    >
+      ♥
+    </motion.span>
+  );
+}
+
+function TrainGraphic() {
+  return (
+    <div className="relative flex items-center justify-center my-8">
+      <motion.div
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        className="relative drop-shadow-xl"
+      >
+        <motion.svg
+          width="160"
+          height="100"
+          viewBox="0 0 160 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="trainBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#FDF2F8" />
+              <stop offset="100%" stopColor="#FBCFE8" />
+            </linearGradient>
+          </defs>
+          <rect x="34" y="38" width="92" height="34" rx="12" fill="url(#trainBody)" stroke="#F9A8D4" strokeWidth="1.5" />
+          <rect x="26" y="48" width="14" height="20" rx="6" fill="#F9A8D4" />
+          <circle cx="50" cy="78" r="8" fill="#F472B6" stroke="#FDF2F8" strokeWidth="2" />
+          <circle cx="80" cy="78" r="8" fill="#F472B6" stroke="#FDF2F8" strokeWidth="2" />
+          <circle cx="108" cy="78" r="8" fill="#F472B6" stroke="#FDF2F8" strokeWidth="2" />
+          <rect x="44" y="18" width="66" height="22" rx="10" fill="#FDF2F8" stroke="#FBCFE8" strokeWidth="1.5" />
+          <rect x="40" y="21" width="12" height="8" rx="4" fill="#FBCFE8" />
+          <rect x="56" y="21" width="12" height="8" rx="4" fill="#FBCFE8" />
+          <rect x="72" y="21" width="12" height="8" rx="4" fill="#FBCFE8" />
+          <rect x="88" y="21" width="12" height="8" rx="4" fill="#FBCFE8" />
+          <rect x="36" y="50" width="16" height="12" rx="4" fill="#FFF1F2" stroke="#FBCFE8" strokeWidth="0.5" />
+          <rect x="56" y="50" width="18" height="12" rx="4" fill="#FFF1F2" stroke="#FBCFE8" strokeWidth="0.5" />
+          <rect x="78" y="50" width="18" height="12" rx="4" fill="#FFF1F2" stroke="#FBCFE8" strokeWidth="0.5" />
+          <rect x="100" y="50" width="16" height="12" rx="4" fill="#FFF1F2" stroke="#FBCFE8" strokeWidth="0.5" />
+          <rect x="28" y="42" width="6" height="22" rx="3" fill="#F9A8D4" />
+          <rect x="126" y="44" width="8" height="24" rx="4" fill="#F472B6" stroke="#FDF2F8" strokeWidth="1" />
+          <rect x="130" y="48" width="4" height="6" rx="2" fill="#F9A8D4" />
+          <rect x="130" y="58" width="4" height="6" rx="2" fill="#F9A8D4" />
+        </motion.svg>
+
+        <div className="absolute -top-4 -right-2 w-28 h-20">
+          <FloatingHeart delay={0} x={20} y={60} />
+          <FloatingHeart delay={0.6} x={60} y={40} />
+          <FloatingHeart delay={1.2} x={40} y={80} />
+          <FloatingHeart delay={1.8} x={80} y={50} />
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function TimeBlock({ value, label }: { value: number; label: string }) {
+  return (
+    <motion.div
+      className="flex flex-col items-center"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 200, damping: 12 }}
+    >
+      <motion.div
+        key={value}
+        className="bg-white/70 backdrop-blur-sm rounded-2xl px-4 py-3 md:px-5 md:py-4 min-w-[72px] md:min-w-[88px] glow-soft"
+        initial={{ y: -12, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 300, damping: 15 }}
+      >
+        <motion.span
+          suppressHydrationWarning
+          className="text-4xl md:text-5xl font-bold text-gradient-rose tracking-tight leading-none block text-center"
+        >
+          {String(value).padStart(2, "0")}
+        </motion.span>
+      </motion.div>
+      <span className="text-[0.6rem] uppercase tracking-[0.15em] text-slate-400 font-semibold mt-2">
+        {label}
+      </span>
+    </motion.div>
+  );
+}
+
+export default function HeroCountdown({ config }: { config: JourneyConfig }) {
+  const now = useNow();
+
+  const boarding = new Date(config.trainBoardingDate);
+  const arrival = new Date(config.arrivalDate);
+  const phase = getJourneyPhase(boarding, arrival, now);
+
+  const target = phase === "arrived" ? boarding : arrival;
+  const countdown = getCountdown(target, now);
+  const { heading, sub } = phrases[phase];
+
+  const isArrived = phase === "arrived";
+
+  const sparkles = useMemo(
+    () =>
+      Array.from({ length: 8 }, (_, i) => ({
+        key: i,
+        delay: i * 0.3,
+        x: 5 + Math.random() * 90,
+        y: 5 + Math.random() * 90,
+        size: 8 + Math.random() * 8,
+      })),
+    []
+  );
+
+  return (
+    <motion.section
+      suppressHydrationWarning
+      className="relative bg-white/60 backdrop-blur-md border border-white/80 rounded-[2.5rem] p-8 md:p-12 text-center overflow-hidden glow-rose"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 100, damping: 20 }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-rose-50/50 via-transparent to-pink-50/30 pointer-events-none" />
+
+      {sparkles.map((s) => (
+        <Sparkle key={s.key} delay={s.delay} x={s.x} y={s.y} size={s.size} />
+      ))}
+
+      <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-rose-200 rounded-tl-xl" />
+      <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-rose-200 rounded-tr-xl" />
+      <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-rose-200 rounded-bl-xl" />
+      <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-rose-200 rounded-br-xl" />
+
+      <div className="relative z-10">
+        <AnimatePresence mode="wait">
+          <motion.h1
+            key={phase}
+            className="text-xl md:text-2xl font-nunito font-semibold text-slate-700 mb-2 leading-relaxed"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.4 }}
+          >
+            {heading}
+          </motion.h1>
+        </AnimatePresence>
+
+        <p className="text-base text-rose-400 font-caveat mb-6">{sub}</p>
+
+        <TrainGraphic />
+
+        {isArrived ? (
+          <motion.div
+            suppressHydrationWarning
+            className="text-6xl md:text-7xl font-bold text-gradient-rose font-caveat tracking-tight"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 150, damping: 10 }}
+          >
+            00:00:00
+          </motion.div>
+        ) : (
+          <div className="flex items-center justify-center gap-3 md:gap-5">
+            <TimeBlock value={countdown.days} label="Days" />
+            <span className="text-2xl md:text-3xl text-rose-300 font-light mt-[-1.8rem]">:</span>
+            <TimeBlock value={countdown.hours} label="Hours" />
+            <span className="text-2xl md:text-3xl text-rose-300 font-light mt-[-1.8rem]">:</span>
+            <TimeBlock value={countdown.minutes} label="Mins" />
+            <span className="text-2xl md:text-3xl text-rose-300 font-light mt-[-1.8rem]">:</span>
+            <TimeBlock value={countdown.seconds} label="Secs" />
+          </div>
+        )}
+
+        <motion.p
+          className="mt-8 text-xs text-slate-400 font-caveat tracking-wide"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          {config.startLocation}
+          <span className="mx-1.5 text-rose-300">→</span>
+          {config.endLocation}
+        </motion.p>
+      </div>
+    </motion.section>
+  );
+}
+</file>
+
+<file path="src/components/MapView.tsx">
+"use client";
+
+import { useId, useMemo } from "react";
+import { motion } from "framer-motion";
+import type { Station } from "@/lib/types";
+import { useNow } from "@/lib/dev-time";
+
+function CompassRose() {
+  return (
+    <svg width="36" height="36" viewBox="0 0 36 36" className="opacity-30">
+      <circle cx="18" cy="18" r="16" fill="none" stroke="#F9A8D4" strokeWidth="0.5" />
+      <polygon points="18,4 21,16 18,14 15,16" fill="#F9A8D4" />
+      <polygon points="18,32 21,20 18,22 15,20" fill="#FBCFE8" />
+      <polygon points="4,18 16,21 14,18 16,15" fill="#FBCFE8" />
+      <polygon points="32,18 20,21 22,18 20,15" fill="#F9A8D4" />
+      <circle cx="18" cy="18" r="2" fill="#F472B6" />
+    </svg>
+  );
+}
+
+function PinBadge({
+  station,
+  index,
+  visited,
+}: {
+  station: Station;
+  index: number;
+  visited: boolean;
+}) {
+  const rotations = [-2, 3, -1, 4, -3, 2, -4, 1, -2];
+  const rotate = rotations[index % rotations.length];
+
+  return (
+    <motion.div
+      className={`rounded-xl p-3 shadow-lg shadow-rose-900/5 border flex-shrink-0 ${
+        visited
+          ? "bg-white/95 border-rose-50"
+          : "bg-white/60 border-rose-100/50"
+      }`}
+      style={{ transform: `rotate(${rotate}deg)` }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ type: "spring", stiffness: 100, damping: 16, delay: index * 0.08 }}
+      whileHover={{ scale: 1.05, rotate: 0 }}
+    >
+      <div className="flex items-start gap-2.5">
+        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-lg shadow-sm border ${
+          visited
+            ? "bg-gradient-to-br from-rose-50 to-pink-50 border-rose-100"
+            : "bg-slate-50 border-slate-100"
+        }`}>
+          {station.emoji}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className={`text-xs font-semibold truncate ${
+            visited ? "text-slate-700" : "text-slate-400"
+          }`}>
+            {station.name}
+          </p>
+          <p className={`text-[0.55rem] font-caveat ${
+            visited ? "text-rose-400" : "text-slate-300"
+          }`}>
+            {new Date(station.dateTime).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            })}
+          </p>
+          {station.description && (
+            <p className={`text-[0.55rem] mt-0.5 leading-tight line-clamp-2 font-caveat ${
+              visited ? "text-slate-500" : "text-slate-300"
+            }`}>
+              {station.description}
+            </p>
+          )}
+        </div>
+        {visited && (
+          <span className="text-[0.5rem] text-rose-300 mt-0.5">✓</span>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+export default function MapView({ stations }: { stations: Station[] }) {
+  const id = useId();
+  const now = useNow();
+  const sorted = useMemo(() => [...stations].sort((a, b) => a.orderIndex - b.orderIndex), [stations]);
+
+  const visitedIndices = useMemo(
+    () => sorted.map((s) => new Date(s.dateTime).getTime() <= now.getTime()),
+    [sorted, now]
+  );
+
+  const visitedCount = visitedIndices.filter(Boolean).length;
+
+  const svgWidth = 320;
+  const svgHeight = Math.max(sorted.length * 90 + 40, 320);
+
+  const points = useMemo(
+    () =>
+      sorted.map((_, i) => {
+        const y = 30 + (i * (svgHeight - 60)) / Math.max(sorted.length - 1, 1);
+        const xOff = i % 2 === 0 ? -25 : 25;
+        return { x: svgWidth / 2 + xOff, y };
+      }),
+    [sorted.length]
+  );
+
+  const pathD = useMemo(() => points.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" "), [points]);
+
+  const visitedPathD = visitedCount > 0
+    ? points.slice(0, visitedCount).map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ")
+    : "";
+
+  return (
+    <motion.section
+      className="relative bg-gradient-to-b from-white/60 to-white/30 backdrop-blur-sm rounded-[2.5rem] p-6 md:p-8 border border-white/60 shadow-[0_8px_30px_-12px_rgba(244,114,182,0.2)]"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 80, damping: 20 }}
+    >
+      <div className="absolute inset-0 bg-grid-lines opacity-40 rounded-[2.5rem] pointer-events-none" />
+
+      <div className="relative z-10">
+        <div className="text-center mb-6 space-y-1">
+          <div className="flex items-center justify-center gap-3">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-rose-200" />
+            <h2 className="text-xl font-caveat text-slate-600">Our Route</h2>
+            <span className="h-px w-8 bg-gradient-to-l from-transparent to-rose-200" />
+          </div>
+          <p className="text-xs text-slate-400 font-caveat">
+            Tracing the path of our journey together
+          </p>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-start gap-6">
+          <div className="flex-shrink-0 w-full md:w-[320px] flex justify-center relative">
+            <div className="absolute top-2 right-2 z-10">
+              <CompassRose />
+            </div>
+            <svg
+              width={svgWidth}
+              height={svgHeight}
+              viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+              className="overflow-visible"
+            >
+              <defs>
+                <linearGradient id={`mg-${id}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#F9A8D4" />
+                  <stop offset="50%" stopColor="#FBCFE8" />
+                  <stop offset="100%" stopColor="#F9A8D4" />
+                </linearGradient>
+              </defs>
+
+              <motion.path
+                d={pathD}
+                stroke={`url(#mg-${id})`}
+                strokeWidth="3"
+                strokeDasharray="8 6"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2.5, ease: "easeInOut" }}
+              />
+
+              {visitedPathD && (
+                <motion.path
+                  d={visitedPathD}
+                  stroke="#F472B6"
+                  strokeWidth="3"
+                  fill="none"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+              )}
+
+              <motion.circle
+                cx={points[0]?.x}
+                cy={points[0]?.y}
+                r="6"
+                fill="#F472B6"
+                initial={{ scale: 0 }}
+                animate={{ scale: [1, 1.3, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+
+              {points.map((pt, i) => {
+                const visited = visitedIndices[i];
+                return (
+                  <g key={sorted[i]?.id || i}>
+                    <motion.circle
+                      cx={pt.x}
+                      cy={pt.y}
+                      r="12"
+                      fill={visited ? "#FDF2F8" : "white"}
+                      stroke={visited ? "#F472B6" : "#FBCFE8"}
+                      strokeWidth="2.5"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.1 * i, type: "spring", stiffness: 150, damping: 12 }}
+                    />
+                    <motion.text
+                      x={pt.x}
+                      y={pt.y + 0.5}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      fontSize="13"
+                      fill={visited ? "#F472B6" : "#CBD5E1"}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 + 0.1 * i }}
+                    >
+                      {sorted[i]?.emoji || "●"}
+                    </motion.text>
+                    <motion.text
+                      x={pt.x}
+                      y={pt.y + 22}
+                      textAnchor="middle"
+                      fontSize="5"
+                      fill={visited ? "#F472B6" : "#CBD5E1"}
+                      fontWeight="bold"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3 + 0.1 * i }}
+                      className="font-caveat"
+                    >
+                      {i + 1}
+                    </motion.text>
+                  </g>
+                );
+              })}
+
+              {visitedCount > 0 && visitedCount < sorted.length && (
+                <motion.circle
+                  cx={points[visitedCount - 1]?.x}
+                  cy={points[visitedCount - 1]?.y}
+                  r="18"
+                  fill="none"
+                  stroke="#F472B6"
+                  strokeWidth="1"
+                  strokeDasharray="3 4"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1.3, opacity: [0.4, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              )}
+            </svg>
+          </div>
+
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full">
+            {sorted.map((station, i) => (
+              <PinBadge key={station.id} station={station} index={i} visited={visitedIndices[i]} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+</file>
+
+<file path="src/components/MilestoneCard.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import { Coins, ShoppingBag, type LucideIcon } from "lucide-react";
+import type { Milestone } from "@/config/data";
+
+const iconMap: Record<Milestone["icon"], LucideIcon> = {
+  salary: Coins,
+  shopping: ShoppingBag,
+};
+
+const iconBgMap: Record<Milestone["icon"], string> = {
+  salary: "bg-amber-50 text-amber-500",
+  shopping: "bg-teal-50 text-teal-500",
+};
+
+const iconGradientMap: Record<Milestone["icon"], string> = {
+  salary: "from-amber-100 via-amber-50 to-yellow-50",
+  shopping: "from-teal-100 via-teal-50 to-cyan-50",
+};
+
+export default function MilestoneCard({
+  milestone,
+  index,
+  imageUrl,
+}: {
+  milestone: Milestone;
+  index: number;
+  imageUrl?: string;
+}) {
+  const Icon = iconMap[milestone.icon];
+  const iconBg = iconBgMap[milestone.icon];
+  const iconGrad = iconGradientMap[milestone.icon];
+  const rotate = index % 2 === 0 ? -2 : 3;
+
+  return (
+    <motion.div
+      className="relative mx-auto w-full max-w-xs"
+      initial={{ opacity: 0, y: 50, rotate: 0 }}
+      whileInView={{ opacity: 1, y: 0, rotate }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        type: "spring",
+        stiffness: 80,
+        damping: 14,
+        delay: index * 0.15,
+      }}
+      whileHover={{ scale: 1.03, rotate: 0 }}
+    >
+      <div className="bg-white rounded-2xl shadow-xl shadow-rose-900/8 pb-14 overflow-visible">
+        <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 z-20">
+          <div className="relative">
+            <div className="w-16 h-4 bg-rose-200/70 backdrop-blur-sm -rotate-2 rounded-[2px] shadow-sm" />
+            <div className="absolute -left-0.5 top-0 w-1 h-4 bg-rose-300/30 rounded-full" />
+            <div className="absolute -right-0.5 top-0 w-1 h-4 bg-rose-300/30 rounded-full" />
+          </div>
+        </div>
+
+        <div className="absolute top-3 right-3 z-20 w-4 h-5 bg-gray-300/40 rounded-sm rotate-6 shadow-sm" />
+
+        {imageUrl ? (
+          <div className="relative rounded-t-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent z-10" />
+            <img
+              src={imageUrl}
+              alt={milestone.title}
+              className="w-full aspect-[4/3] object-cover"
+            />
+          </div>
+        ) : (
+          <div
+            className={`w-full aspect-[4/3] bg-gradient-to-br ${iconGrad} rounded-t-2xl flex items-center justify-center relative overflow-hidden`}
+          >
+            <div className="absolute inset-0 bg-grid-lines opacity-30" />
+            <motion.div
+              className={`p-5 rounded-2xl ${iconBg} shadow-inner`}
+              initial={{ scale: 0.8 }}
+              whileInView={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 150, damping: 12 }}
+            >
+              <Icon size={36} />
+            </motion.div>
+          </div>
+        )}
+
+        <div className="px-5 pt-4 space-y-2">
+          <h3 className="font-nunito font-semibold text-slate-700 text-base">
+            {milestone.title}
+          </h3>
+
+          <p className="text-slate-500 text-sm leading-relaxed">
+            {milestone.description}
+          </p>
+        </div>
+
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+          <span className="text-xs text-rose-400 font-caveat tracking-wide px-3 py-1 bg-rose-50/80 rounded-full">
+            {new Date(milestone.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/StationModal.tsx">
+"use client";
+
+import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
+import type { Station } from "@/lib/types";
+import { formatDateTime } from "@/utils/time";
+
+import BirthdaySurprise from "./surprises/BirthdaySurprise";
+import DateNightSurprise from "./surprises/DateNightSurprise";
+import CozySurprise from "./surprises/CozySurprise";
+import DepartureSurprise from "./surprises/DepartureSurprise";
+import HugSurprise from "./surprises/HugSurprise";
+import SurpriseReveal from "./surprises/SurpriseReveal";
+
+function NormalContent({ station }: { station: Station }) {
+  return (
+    <div className="space-y-4">
+      {station.imageUrl && (
+        <div className="w-full aspect-video rounded-xl overflow-hidden bg-rose-50">
+          <img
+            src={station.imageUrl}
+            alt={station.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      {station.description && (
+        <p className="text-sm text-slate-600 leading-relaxed">
+          {station.description}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function SurpriseContent({
+  station,
+  allStations,
+}: {
+  station: Station;
+  allStations: Station[];
+}) {
+  const sorted = [...allStations].sort((a, b) => a.orderIndex - b.orderIndex);
+  const prevStations = sorted.filter(
+    (s) => s.orderIndex < station.orderIndex
+  );
+
+  switch (station.eventType) {
+    case "birthday":
+      return (
+        <BirthdaySurprise
+          message={station.customMessage}
+          spotifyUrl={station.spotifyUrl}
+          stations={prevStations}
+        />
+      );
+    case "date-night":
+      return (
+        <DateNightSurprise
+          message={station.customMessage}
+          spotifyUrl={station.spotifyUrl}
+        />
+      );
+    case "cozy":
+      return <CozySurprise message={station.customMessage} />;
+    case "departure":
+      return (
+        <DepartureSurprise
+          message={station.customMessage}
+          stations={prevStations}
+        />
+      );
+    case "hug":
+      return <HugSurprise message={station.customMessage} />;
+    case "surprise":
+      return <SurpriseReveal message={station.customMessage} />;
+    default:
+      return <NormalContent station={station} />;
+  }
+}
+
+export default function StationModal({
+  station,
+  allStations,
+  onClose,
+}: {
+  station: Station | null;
+  allStations: Station[];
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!station) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [station]);
+
+  return (
+    <AnimatePresence>
+      {station && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <motion.div
+            className="absolute inset-0 bg-black/10 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+          />
+          <motion.div
+            className="relative bg-white rounded-[2rem] shadow-2xl shadow-rose-900/10 w-full max-w-md max-h-[85vh] overflow-y-auto"
+            initial={{ opacity: 0, scale: 0.85, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.85, y: 30 }}
+            transition={{ type: "spring", stiffness: 150, damping: 18 }}
+          >
+            <div className="sticky top-0 z-10 flex items-center justify-between p-5 pb-3 bg-white/80 backdrop-blur-sm border-b border-rose-50 rounded-t-[2rem]">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">{station.emoji}</span>
+                <div>
+                  <h3 className="font-nunito font-semibold text-slate-700 text-base">
+                    {station.name}
+                  </h3>
+                  <p className="text-xs text-rose-400 font-caveat">
+                    {formatDateTime(station.dateTime)}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                className="p-1.5 rounded-full hover:bg-rose-50 transition-colors text-slate-400 hover:text-rose-500"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="p-5 pt-4">
+              <SurpriseContent station={station} allStations={allStations} />
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
+</file>
+
+<file path="src/components/StationsTrack.tsx">
+"use client";
+
+import { useEffect, useState, useId, useMemo } from "react";
+import { motion } from "framer-motion";
+import type { Station, StationProgress } from "@/lib/types";
+import { getStationsProgress } from "@/utils/time";
+import { useNow } from "@/lib/dev-time";
+
+const TRACK_HEIGHT = 500;
+const PADDING_Y = 50;
+const TRACK_WIDTH = 140;
+
+function TrainIcon() {
+  return (
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <rect x="8" y="13" width="20" height="10" rx="5" fill="#FBCFE8" stroke="#F9A8D4" strokeWidth="0.8" />
+      <rect x="5" y="17" width="5" height="6" rx="2.5" fill="#F9A8D4" />
+      <circle cx="13" cy="26" r="3.5" fill="#F472B6" stroke="#FDF2F8" strokeWidth="1.5" />
+      <circle cx="23" cy="26" r="3.5" fill="#F472B6" stroke="#FDF2F8" strokeWidth="1.5" />
+      <rect x="11" y="7" width="15" height="7" rx="3.5" fill="#FDF2F8" stroke="#FBCFE8" strokeWidth="0.8" />
+      <rect x="10" y="9" width="4" height="3" rx="1.5" fill="#FBCFE8" />
+      <rect x="16" y="9" width="4" height="3" rx="1.5" fill="#FBCFE8" />
+      <rect x="22" y="9" width="4" height="3" rx="1.5" fill="#FBCFE8" />
+    </svg>
+  );
+}
+
+function Badge({ children, icon }: { children: React.ReactNode; icon?: string }) {
+  return (
+    <div className="bg-white shadow-md border border-rose-100 text-rose-500 text-xs font-semibold rounded-full px-5 py-2 whitespace-nowrap flex items-center gap-1.5">
+      {icon && <span>{icon}</span>}
+      {children}
+    </div>
+  );
+}
+
+function TrackStar({ delay, x, y }: { delay: number; x: number; y: number }) {
+  return (
+    <motion.text
+      x={x}
+      y={y}
+      textAnchor="middle"
+      dominantBaseline="central"
+      fontSize="7"
+      fill="#FBCFE8"
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: [0, 1, 0], scale: [0, 1.2, 0] }}
+      transition={{ duration: 3, delay, repeat: Infinity, ease: "easeInOut" }}
+    >
+      ✦
+    </motion.text>
+  );
+}
+
+function getPointOnPath(
+  stations: Station[],
+  progress: StationProgress
+): { x: number; y: number } {
+  const count = stations.length;
+  if (count < 2) return { x: TRACK_WIDTH / 2, y: PADDING_Y };
+  const usableHeight = TRACK_HEIGHT - PADDING_Y * 2;
+  const segmentHeight = usableHeight / (count - 1);
+  const rawIndex = progress.overallPercent / 100;
+  const exactIndex = rawIndex * (count - 1);
+  const baseY = PADDING_Y + exactIndex * segmentHeight;
+  const xOffset = Math.sin((exactIndex / (count - 1)) * Math.PI * 2) * 30;
+  return { x: TRACK_WIDTH / 2 + xOffset, y: baseY };
+}
+
+export default function StationsTrack({
+  stations,
+  onStationClick,
+}: {
+  stations: Station[];
+  onStationClick: (station: Station) => void;
+}) {
+  const [mounted, setMounted] = useState(false);
+  const [progress, setProgress] = useState<StationProgress>({
+    overallPercent: 0,
+    currentLegIndex: 0,
+    totalLegs: 0,
+    legPercent: 0,
+    prevStation: null,
+    nextStation: null,
+  });
+  const id = useId();
+  const now = useNow();
+  const sorted = useMemo(() => [...stations].sort((a, b) => a.orderIndex - b.orderIndex), [stations]);
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (mounted && sorted.length) setProgress(getStationsProgress(sorted, now));
+  }, [mounted, sorted, now]);
+
+  const usableHeight = TRACK_HEIGHT - PADDING_Y * 2;
+  const segmentHeight = sorted.length > 1 ? usableHeight / (sorted.length - 1) : 0;
+
+  const trackPoints = useMemo(
+    () =>
+      sorted.map((_, i) => {
+        const y = PADDING_Y + i * segmentHeight;
+        const xOffset = Math.sin((i / (Math.max(sorted.length - 1, 1))) * Math.PI * 2) * 30;
+        return { x: TRACK_WIDTH / 2 + xOffset, y };
+      }),
+    [sorted.length, segmentHeight]
+  );
+
+  const pathD = useMemo(
+    () => trackPoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" "),
+    [trackPoints]
+  );
+
+  const stars = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, i) => ({
+        key: i,
+        delay: i * 0.4,
+        x: 10 + Math.random() * (TRACK_WIDTH - 20),
+        y: 10 + Math.random() * (TRACK_HEIGHT - 20),
+      })),
+    []
+  );
+
+  const trainPos = mounted && sorted.length > 1
+    ? getPointOnPath(sorted, progress)
+    : { x: TRACK_WIDTH / 2, y: PADDING_Y };
+
+  return (
+    <motion.section
+      className="relative flex flex-col items-center py-16"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="relative" style={{ width: TRACK_WIDTH, height: TRACK_HEIGHT }}>
+        <motion.svg
+          width={TRACK_WIDTH}
+          height={TRACK_HEIGHT}
+          viewBox={`0 0 ${TRACK_WIDTH} ${TRACK_HEIGHT}`}
+          fill="none"
+          className="absolute inset-0 overflow-visible"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <defs>
+            <linearGradient id={`tg-${id}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#F9A8D4" />
+              <stop offset="50%" stopColor="#FBCFE8" />
+              <stop offset="100%" stopColor="#F9A8D4" />
+            </linearGradient>
+          </defs>
+
+          <path d={pathD} stroke={`url(#tg-${id})`} strokeWidth="3" strokeDasharray="8 8" strokeLinecap="round" />
+
+          {stars.map((s) => (
+            <TrackStar key={s.key} delay={s.delay} x={s.x} y={s.y} />
+          ))}
+
+          {trackPoints.map((pt, i) => {
+            const visited = i <= progress.currentLegIndex && progress.overallPercent < 100;
+            return (
+              <g key={sorted[i]?.id || i} onClick={() => onStationClick(sorted[i])} style={{ cursor: "pointer" }}>
+                <motion.circle
+                  cx={pt.x}
+                  cy={pt.y}
+                  r={visited ? 13 : 11}
+                  fill={visited ? "#FDF2F8" : "white"}
+                  stroke={visited ? "#F9A8D4" : "#FBCFE8"}
+                  strokeWidth={visited ? 3 : 2}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: i * 0.05, type: "spring", stiffness: 150, damping: 12 }}
+                  whileHover={{ scale: 1.2 }}
+                />
+                {visited && (
+                  <motion.circle
+                    cx={pt.x}
+                    cy={pt.y}
+                    r={17}
+                    fill="none"
+                    stroke="#F9A8D4"
+                    strokeWidth="1"
+                    strokeDasharray="3 4"
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1.2, opacity: [0.4, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                )}
+                <motion.text
+                  x={pt.x}
+                  y={pt.y + 0.5}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize="11"
+                  fill={visited ? "#F472B6" : "#CBD5E1"}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 + i * 0.05 }}
+                >
+                  {sorted[i]?.emoji || "●"}
+                </motion.text>
+              </g>
+            );
+          })}
+
+          {mounted && (
+            <defs>
+              <filter id={`glow-${id}`}>
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+          )}
+        </motion.svg>
+
+        {mounted && (
+          <motion.div
+            className="absolute z-10"
+            style={{ left: trainPos.x - 18, top: 0 }}
+            animate={{ top: trainPos.y - 18 }}
+            transition={{ type: "spring", stiffness: 50, damping: 22 }}
+          >
+            <motion.div
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="drop-shadow-lg"
+            >
+              <motion.div
+                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="absolute -inset-3 bg-rose-300/20 rounded-full blur-xl"
+              />
+              <TrainIcon />
+            </motion.div>
+          </motion.div>
+        )}
+
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+          <Badge icon="🚉">Thrissur</Badge>
+        </div>
+
+        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
+          <Badge icon="🏁">Gurugram</Badge>
+        </div>
+      </div>
+
+      {mounted && sorted.length > 1 && (
+        <motion.div
+          className="mt-10 flex flex-col items-center gap-3"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <div className="w-56 bg-white/60 backdrop-blur-sm rounded-2xl p-1 shadow-sm border border-rose-50 overflow-hidden">
+            <motion.div
+              className="h-2 rounded-full bg-gradient-to-r from-rose-300 via-rose-400 to-pink-400"
+              style={{ width: `${progress.overallPercent}%` }}
+              animate={{ width: `${progress.overallPercent}%` }}
+              transition={{ type: "spring", stiffness: 60, damping: 20 }}
+            />
+          </div>
+
+          <div className="bg-white/50 backdrop-blur-sm border border-rose-50 rounded-2xl px-7 py-3 shadow-sm">
+            <p className="text-sm text-slate-500">
+              <span className="font-semibold text-rose-400">{progress.overallPercent}%</span> complete
+            </p>
+          </div>
+
+          {progress.prevStation && progress.nextStation && (
+            <div className="bg-white/40 backdrop-blur-sm border border-rose-50/50 rounded-xl px-4 py-2 shadow-sm">
+              <p className="text-xs text-slate-400 font-caveat flex items-center gap-1.5">
+                <span className="text-base">{progress.prevStation.emoji}</span>
+                <span className="text-slate-500 truncate max-w-[80px]">{progress.prevStation.name}</span>
+                <span className="text-rose-300 mx-0.5">→</span>
+                <span className="text-base">{progress.nextStation.emoji}</span>
+                <span className="text-slate-500 truncate max-w-[80px]">{progress.nextStation.name}</span>
+                <span className="text-[0.55rem] text-rose-400 bg-rose-50 px-1.5 py-0.5 rounded-full ml-1">
+                  {progress.legPercent}%
+                </span>
+              </p>
+            </div>
+          )}
+        </motion.div>
+      )}
+    </motion.section>
+  );
+}
+</file>
+
+<file path="src/components/surprises/BirthdaySurprise.tsx">
+"use client";
+
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import confetti from "canvas-confetti";
+import LoveLetter from "./LoveLetter";
+import CandleCake from "./CandleCake";
+import type { Station } from "@/lib/types";
+
+function MemoryStrip({ stations }: { stations: Station[] }) {
+  if (!stations.length) return null;
+
+  return (
+    <div className="w-full overflow-x-auto scrollbar-hide -mx-2 px-2">
+      <div className="flex gap-3 pb-2">
+        {stations.map((s) => (
+          <motion.div
+            key={s.id}
+            className="flex-shrink-0 w-20 bg-white rounded-xl p-2 shadow-sm border border-rose-50"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 150, damping: 14 }}
+          >
+            <div className="w-full aspect-square rounded-lg bg-rose-50 flex items-center justify-center text-2xl mb-1">
+              {s.imageUrl ? (
+                <img
+                  src={s.imageUrl}
+                  alt={s.name}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              ) : (
+                s.emoji
+              )}
+            </div>
+            <p className="text-[0.5rem] text-slate-500 truncate text-center font-caveat">
+              {s.name}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function BirthdaySurprise({
+  message,
+  spotifyUrl,
+  stations,
+}: {
+  message: string;
+  spotifyUrl: string;
+  stations: Station[];
+}) {
+  const fired = useRef(false);
+
+  useEffect(() => {
+    if (fired.current) return;
+    fired.current = true;
+
+    const duration = 3000;
+    const end = Date.now() + duration;
+
+    const frame = () => {
+      confetti({
+        particleCount: 3,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.7 },
+        colors: ["#FBCFE8", "#F9A8D4", "#F472B6", "#FDF2F8"],
+      });
+      confetti({
+        particleCount: 3,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.7 },
+        colors: ["#FBCFE8", "#F9A8D4", "#F472B6", "#FDF2F8"],
+      });
+
+      if (Date.now() < end) requestAnimationFrame(frame);
+    };
+
+    frame();
+  }, []);
+
+  return (
+    <motion.div
+      className="space-y-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="text-center space-y-1">
+        <motion.h3
+          className="text-2xl font-caveat text-rose-500"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 150, damping: 12 }}
+        >
+          Happy Birthday! 🎂
+        </motion.h3>
+        <p className="text-xs text-slate-400 font-caveat">
+          Make a wish. It&apos;s already come true.
+        </p>
+      </div>
+
+      <div className="grid gap-6">
+        <CandleCake />
+
+        <LoveLetter message={message} />
+
+        {spotifyUrl && (
+          <div className="w-full">
+            <iframe
+              src={spotifyUrl.includes("/embed/") ? spotifyUrl : spotifyUrl.replace("open.spotify.com/", "open.spotify.com/embed/")}
+              width="100%"
+              height="80"
+              allow="encrypted-media"
+              className="rounded-xl"
+            />
+          </div>
+        )}
+
+        {stations.length > 0 && (
+          <div className="space-y-2">
+            <p className="text-xs text-rose-400 font-caveat text-center">
+              Our journey so far...
+            </p>
+            <MemoryStrip stations={stations} />
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/surprises/CandleCake.tsx">
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+function Candle({
+  id,
+  lit,
+  onBlow,
+}: {
+  id: number;
+  lit: boolean;
+  onBlow: () => void;
+}) {
+  return (
+    <motion.g
+      style={{ cursor: lit ? "pointer" : "default" }}
+      onClick={lit ? onBlow : undefined}
+      whileTap={lit ? { scale: 0.9 } : undefined}
+    >
+      <rect
+        x={id === 1 ? -2 : id === 2 ? 14 : 30}
+        y="-16"
+        width="6"
+        height="16"
+        rx="2"
+        fill={lit ? "#FCD34D" : "#9CA3AF"}
+      />
+      {lit && (
+        <motion.ellipse
+          cx={id === 1 ? 1 : id === 2 ? 17 : 33}
+          cy="-20"
+          rx="4"
+          ry="6"
+          fill="#F97316"
+          animate={{ scaleY: [1, 1.3, 1] }}
+          transition={{ duration: 0.6, repeat: Infinity }}
+        />
+      )}
+      {lit && (
+        <motion.ellipse
+          cx={id === 1 ? 1 : id === 2 ? 17 : 33}
+          cy="-22"
+          rx="2"
+          ry="3"
+          fill="#FBBF24"
+          animate={{ scale: [1, 1.4, 1] }}
+          transition={{ duration: 0.4, repeat: Infinity }}
+        />
+      )}
+    </motion.g>
+  );
+}
+
+export default function CandleCake({
+  onAllBlown,
+}: {
+  onAllBlown?: () => void;
+}) {
+  const [lit, setLit] = useState([true, true, true]);
+  const [showMessage, setShowMessage] = useState(false);
+
+  const totalCandles = 3;
+
+  const handleBlow = (index: number) => {
+    const next = [...lit];
+    next[index] = false;
+    setLit(next);
+
+    if (next.every((l) => !l)) {
+      setTimeout(() => setShowMessage(true), 500);
+      onAllBlown?.();
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <svg width="120" height="100" viewBox="0 0 120 100" className="drop-shadow-md">
+        <rect x="15" y="45" width="90" height="30" rx="8" fill="#FBCFE8" />
+        <rect x="25" y="35" width="70" height="15" rx="6" fill="#FDF2F8" />
+        <rect x="10" y="50" width="100" height="35" rx="10" fill="#F9A8D4" />
+        <rect x="5" y="70" width="110" height="12" rx="6" fill="#F472B6" />
+        <ellipse cx="60" cy="45" rx="18" ry="5" fill="#FDF2F8" />
+
+        {[0, 1, 2].map((i) => (
+          <Candle key={i} id={i + 1} lit={lit[i]} onBlow={() => handleBlow(i)} />
+        ))}
+
+        <text x="60" y="90" textAnchor="middle" fill="#BE185D" fontSize="8" fontWeight="bold">
+          happy birthday
+        </text>
+      </svg>
+
+      <AnimatePresence>
+        {!lit.some((l) => l) && !showMessage && (
+          <motion.p
+            className="text-xs text-rose-400 animate-pulse font-caveat"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            ✨ Make a wish... ✨
+          </motion.p>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showMessage && (
+          <motion.p
+            className="text-sm text-rose-500 font-caveat text-center"
+            initial={{ opacity: 0, scale: 0.5, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 150, damping: 12 }}
+          >
+            It&apos;s already come true. ♥
+          </motion.p>
+        )}
+      </AnimatePresence>
+
+      {lit.some((l) => l) && (
+        <p className="text-xs text-slate-400 font-caveat">Tap the candles to blow them out!</p>
+      )}
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/surprises/CozySurprise.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+
+function BlanketFort() {
+  return (
+    <motion.svg
+      width="160"
+      height="100"
+      viewBox="0 0 160 100"
+      className="drop-shadow-md"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 100, damping: 14 }}
+    >
+      <motion.path
+        d="M10,90 L30,20 L50,50 L70,15 L90,45 L110,20 L130,55 L150,25 L155,90 Z"
+        fill="#FBCFE8"
+        stroke="#F9A8D4"
+        strokeWidth="3"
+        strokeLinejoin="round"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+      />
+      <motion.rect
+        x="60"
+        y="55"
+        width="40"
+        height="35"
+        rx="5"
+        fill="#FDF2F8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+      />
+      <motion.text
+        x="80"
+        y="78"
+        textAnchor="middle"
+        fill="#F472B6"
+        fontSize="10"
+        fontWeight="bold"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+      >
+        cozy ♥
+      </motion.text>
+      <motion.circle
+        cx="55"
+        cy="52"
+        r="5"
+        fill="#FEF3C7"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, r: [5, 7, 5] }}
+        transition={{ delay: 1.5, repeat: Infinity, duration: 2 }}
+      />
+      <motion.circle
+        cx="105"
+        cy="48"
+        r="5"
+        fill="#FEF3C7"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, r: [5, 7, 5] }}
+        transition={{ delay: 1.8, repeat: Infinity, duration: 2 }}
+      />
+    </motion.svg>
+  );
+}
+
+const defaultMovies = [
+  "🎬 500 Days of Summer",
+  "🎬 About Time",
+  "🎬 The Before Trilogy",
+  "🎬 La La Land",
+  "🎬 Eternal Sunshine",
+];
+
+export default function CozySurprise({
+  message,
+  customMovies,
+}: {
+  message: string;
+  customMovies?: string[];
+}) {
+  const movies = customMovies?.length ? customMovies : defaultMovies;
+
+  return (
+    <motion.div
+      className="space-y-5"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="flex flex-col items-center text-center space-y-1">
+        <BlanketFort />
+        <h3 className="text-xl font-caveat text-rose-500 mt-2">
+          Cozy Staycation 🏡
+        </h3>
+        <p className="text-xs text-slate-400 font-caveat">
+          No plans. Just us. Perfect.
+        </p>
+      </div>
+
+      {message && (
+        <motion.div
+          className="bg-yellow-50/80 backdrop-blur-sm rounded-xl p-4 border border-yellow-100 shadow-sm -rotate-1"
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, type: "spring", stiffness: 120, damping: 14 }}
+        >
+          <p className="text-sm text-slate-600 whitespace-pre-line font-caveat leading-relaxed">
+            {message}
+          </p>
+        </motion.div>
+      )}
+
+      <motion.div
+        className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-rose-50 shadow-sm rotate-1"
+        initial={{ opacity: 0, x: 10 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.5, type: "spring", stiffness: 120, damping: 14 }}
+      >
+        <p className="text-xs text-rose-400 font-caveat mb-2 uppercase tracking-wider">
+          Movie Marathon 🎥
+        </p>
+        <ul className="space-y-1">
+          {movies.map((movie, i) => (
+            <motion.li
+              key={i}
+              className="text-sm text-slate-600"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6 + i * 0.1 }}
+            >
+              {movie}
+            </motion.li>
+          ))}
+        </ul>
+      </motion.div>
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/surprises/DateNightSurprise.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import HeartRain from "./HeartRain";
+
+export default function DateNightSurprise({
+  message,
+  spotifyUrl,
+}: {
+  message: string;
+  spotifyUrl: string;
+}) {
+  return (
+    <div className="relative overflow-hidden rounded-xl">
+      <HeartRain active />
+
+      <div className="relative z-10 space-y-5 p-2">
+        <motion.div
+          className="text-center space-y-1"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 120, damping: 16 }}
+        >
+          <h3 className="text-xl font-caveat text-rose-500">Date Night ✨</h3>
+          <p className="text-xs text-slate-400 font-caveat">A night to remember</p>
+        </motion.div>
+
+        {message && (
+          <motion.div
+            className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-rose-100 shadow-sm"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 120, damping: 14 }}
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-rose-400">🍝</span>
+              <span className="text-xs font-caveat text-rose-400 uppercase tracking-wider">
+                Tonight&apos;s Menu
+              </span>
+            </div>
+            <p className="text-sm text-slate-600 whitespace-pre-line font-caveat leading-relaxed">
+              {message}
+            </p>
+          </motion.div>
+        )}
+
+        {spotifyUrl && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <p className="text-xs text-rose-400 font-caveat text-center mb-2">
+              Our Song ♪
+            </p>
+            <iframe
+              src={spotifyUrl.includes("/embed/") ? spotifyUrl : spotifyUrl.replace("open.spotify.com/", "open.spotify.com/embed/")}
+              width="100%"
+              height="80"
+              allow="encrypted-media"
+              className="rounded-xl"
+            />
+          </motion.div>
+        )}
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/surprises/DepartureSurprise.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+import LoveLetter from "./LoveLetter";
+import type { Station } from "@/lib/types";
+
+function MemoryMontage({ stations }: { stations: Station[] }) {
+  if (!stations.length) {
+    return (
+      <div className="text-center py-4">
+        <p className="text-xs text-slate-400 font-caveat">
+          No memories captured yet. But the best ones are still to come. ♥
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full overflow-x-auto scrollbar-hide -mx-2 px-2">
+      <div className="flex gap-3 pb-2">
+        {stations.map((s, i) => (
+          <motion.div
+            key={s.id}
+            className="flex-shrink-0 w-28 bg-white rounded-2xl p-2 shadow-md border border-rose-50"
+            initial={{ opacity: 0, y: 20, rotate: i % 2 === 0 ? -2 : 2 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: i * 0.08,
+              type: "spring",
+              stiffness: 120,
+              damping: 14,
+            }}
+          >
+            <div className="w-full aspect-square rounded-xl bg-gradient-to-br from-rose-50 to-pink-50 flex items-center justify-center text-3xl mb-1 overflow-hidden">
+              {s.imageUrl ? (
+                <img
+                  src={s.imageUrl}
+                  alt={s.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                s.emoji
+              )}
+            </div>
+            <p className="text-[0.5rem] text-slate-500 truncate text-center font-caveat">
+              {s.name}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function DepartureSurprise({
+  message,
+  stations,
+}: {
+  message: string;
+  stations: Station[];
+}) {
+  return (
+    <motion.div
+      className="space-y-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="text-center space-y-1">
+        <motion.h3
+          className="text-2xl font-caveat text-rose-500"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 150, damping: 12 }}
+        >
+          Until Next Time 👋
+        </motion.h3>
+        <p className="text-xs text-slate-400 font-caveat">
+          Not goodbye. Just see you soon.
+        </p>
+      </div>
+
+      <div className="space-y-2">
+        <p className="text-xs text-rose-400 font-caveat text-center">
+          Our journey in moments
+        </p>
+        <MemoryMontage stations={stations} />
+      </div>
+
+      <LoveLetter message={message} />
+
+      <motion.div
+        className="text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+      >
+        <p className="text-xs text-slate-400 font-caveat">
+          Distance means so little when someone means so much. ♥
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/surprises/HeartRain.tsx">
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+interface HeartDrop {
+  id: number;
+  x: number;
+  delay: number;
+  size: number;
+  duration: number;
+}
+
+export default function HeartRain({ active = true }: { active?: boolean }) {
+  const [hearts, setHearts] = useState<HeartDrop[]>([]);
+
+  useEffect(() => {
+    if (!active) {
+      setHearts([]);
+      return;
+    }
+
+    const generated: HeartDrop[] = Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      delay: Math.random() * 3,
+      size: 12 + Math.random() * 16,
+      duration: 3 + Math.random() * 3,
+    }));
+    setHearts(generated);
+
+    const id = setInterval(() => {
+      setHearts((prev) => [
+        ...prev.slice(-25),
+        {
+          id: Date.now(),
+          x: Math.random() * 100,
+          delay: 0,
+          size: 12 + Math.random() * 16,
+          duration: 3 + Math.random() * 3,
+        },
+      ]);
+    }, 600);
+
+    return () => clearInterval(id);
+  }, [active]);
+
+  if (!active || !hearts.length) return null;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      {hearts.map((heart) => (
+        <motion.span
+          key={heart.id}
+          className="absolute text-rose-300 select-none"
+          style={{
+            left: `${heart.x}%`,
+            top: -30,
+            fontSize: heart.size,
+          }}
+          initial={{ y: -30, opacity: 0.8, rotate: 0 }}
+          animate={{ y: "110vh", opacity: 0, rotate: 20 }}
+          transition={{
+            duration: heart.duration,
+            delay: heart.delay,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          ♥
+        </motion.span>
+      ))}
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/surprises/HugSurprise.tsx">
+"use client";
+
+import { motion } from "framer-motion";
+
+export default function HugSurprise({ message }: { message: string }) {
+  return (
+    <motion.div
+      className="flex flex-col items-center space-y-4 py-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div
+        className="text-7xl"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1, rotate: [0, -5, 5, 0] }}
+        transition={{
+          scale: { type: "spring", stiffness: 150, damping: 12 },
+          rotate: { delay: 0.5, duration: 1.5, repeat: Infinity },
+        }}
+      >
+        🫂
+      </motion.div>
+
+      <motion.p
+        className="text-3xl font-caveat text-rose-500"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        Finally.
+      </motion.p>
+
+      {message && (
+        <motion.p
+          className="text-sm text-slate-500 text-center font-caveat max-w-xs"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          {message}
+        </motion.p>
+      )}
+    </motion.div>
+  );
+}
+</file>
+
+<file path="src/components/surprises/LoveLetter.tsx">
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+function TypewriterText({ text }: { text: string }) {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    if (!text) return;
+    setDisplayed("");
+    setDone(false);
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setDisplayed(text.slice(0, i));
+      if (i >= text.length) {
+        clearInterval(id);
+        setDone(true);
+      }
+    }, 30);
+    return () => clearInterval(id);
+  }, [text]);
+
+  return (
+    <div className="space-y-2">
+      <p className="text-slate-700 leading-relaxed whitespace-pre-line font-caveat text-lg">
+        {displayed}
+        {!done && <span className="animate-pulse text-rose-400">|</span>}
+      </p>
+    </div>
+  );
+}
+
+export default function LoveLetter({
+  message,
+  onOpen,
+}: {
+  message: string;
+  onOpen?: () => void;
+}) {
+  const [sealed, setSealed] = useState(true);
+
+  const handleOpen = useCallback(() => {
+    setSealed(false);
+    onOpen?.();
+  }, [onOpen]);
+
+  if (!message) return null;
+
+  return (
+    <div className="flex flex-col items-center">
+      <AnimatePresence mode="wait">
+        {sealed ? (
+          <motion.button
+            key="envelope"
+            className="relative w-48 h-36 bg-rose-100 rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform flex items-center justify-center"
+            onClick={handleOpen}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5, rotate: 10 }}
+            transition={{ type: "spring", stiffness: 200, damping: 14 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="absolute inset-0 overflow-hidden rounded-lg">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[96px] border-r-[96px] border-b-[40px] border-l-transparent border-r-transparent border-b-rose-200 -top-1" />
+            </div>
+            <span className="relative text-4xl z-10">💌</span>
+            <p className="absolute -bottom-7 text-xs text-rose-400 font-caveat whitespace-nowrap">
+              Tap to open
+            </p>
+          </motion.button>
+        ) : (
+          <motion.div
+            key="letter"
+            className="bg-white rounded-xl p-5 shadow-md max-w-md w-full border border-rose-100"
+            initial={{ opacity: 0, y: 20, rotateX: -20 }}
+            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+            transition={{ type: "spring", stiffness: 120, damping: 16 }}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-rose-400">♥</span>
+              <span className="text-xs text-rose-400 font-caveat uppercase tracking-wider">
+                A little note for you
+              </span>
+            </div>
+            <TypewriterText text={message} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+</file>
+
+<file path="src/components/surprises/SurpriseReveal.tsx">
+"use client";
+
+import { useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+function StarField() {
+  const stars = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    delay: Math.random() * 2,
+    size: 4 + Math.random() * 8,
+    duration: 2 + Math.random() * 2,
+  }));
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {stars.map((star) => (
+        <motion.span
+          key={star.id}
+          className="absolute text-yellow-300"
+          style={{
+            left: `${star.x}%`,
+            top: -10,
+            fontSize: star.size,
+          }}
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: "100%", opacity: [0, 1, 0] }}
+          transition={{
+            duration: star.duration,
+            delay: star.delay,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        >
+          ✦
+        </motion.span>
+      ))}
+    </div>
+  );
+}
+
+export default function SurpriseReveal({
+  message,
+}: {
+  message: string;
+}) {
+  const [opened, setOpened] = useState(false);
+
+  const handleOpen = useCallback(() => {
+    setOpened(true);
+  }, []);
+
+  return (
+    <div className="relative overflow-hidden rounded-xl min-h-[200px]">
+      {opened && <StarField />}
+
+      <div className="relative z-10 flex flex-col items-center py-4">
+        <AnimatePresence mode="wait">
+          {!opened ? (
+            <motion.button
+              key="sealed"
+              className="flex flex-col items-center gap-3 cursor-pointer"
+              onClick={handleOpen}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="text-6xl">🎁</span>
+              <span className="text-xs text-rose-400 font-caveat">Tap to open</span>
+            </motion.button>
+          ) : (
+            <motion.div
+              key="revealed"
+              className="text-center space-y-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 120, damping: 14 }}
+            >
+              <motion.span
+                className="text-5xl block"
+                initial={{ scale: 0, rotate: -30 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 150, damping: 12 }}
+              >
+                ✨
+              </motion.span>
+
+              {message ? (
+                <p className="text-lg text-slate-700 whitespace-pre-line font-caveat leading-relaxed max-w-sm">
+                  {message}
+                </p>
+              ) : (
+                <p className="text-lg text-slate-700 font-caveat">
+                  Some surprises are best left unspoken. ♥
+                </p>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+</file>
+
+<file path="src/config/data.ts">
+export interface Milestone {
+  id: string;
+  date: string;
+  title: string;
+  description: string;
+  icon: 'salary' | 'shopping';
+}
+
+export const siteConfig = {
+  journey: {
+    startLocation: "Thrissur",
+    endLocation: "Gurugram",
+    trainBoardingDate: "2026-08-04T12:00:00",
+    arrivalDate: "2026-08-06T12:00:00",
+  },
+  milestones: [
+    {
+      id: "m1",
+      date: "2026-06-15",
+      title: "First Salary! 💸",
+      description: "So incredibly proud of you for securing the bag.",
+      icon: "salary",
+    },
+    {
+      id: "m2",
+      date: "2026-07-01",
+      title: "The H&M Haul 🛍️",
+      description: "Bought completely with your own hard-earned money. Independent and stylish!",
+      icon: "shopping",
+    },
+  ] as Milestone[],
+};
+</file>
+
+<file path="src/lib/api.ts">
+import type { SheetData, Station, Milestone, JourneyConfig } from "@/lib/types";
+
+const API_BASE = "/api/data";
+const DIRECT_URL = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL || "";
+
+export async function fetchData(): Promise<SheetData> {
+  if (DIRECT_URL) {
+    const res = await fetch(DIRECT_URL, { cache: "no-store" });
+    if (res.ok) {
+      const text = await res.text();
+      return JSON.parse(text);
+    }
+  }
+
+  const res = await fetch(API_BASE, { cache: "no-store" });
+  if (res.ok) return res.json();
+
+  throw new Error("No data source available");
+}
+
+export async function addStation(station: Omit<Station, "id">, pin: string): Promise<Station> {
+  const res = await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "addStation", payload: station, pin }),
+  });
+  if (!res.ok) throw new Error("Failed to add station");
+  return res.json();
+}
+
+export async function updateStation(station: Station, pin: string): Promise<void> {
+  const res = await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "updateStation", payload: station, pin }),
+  });
+  if (!res.ok) throw new Error("Failed to update station");
+}
+
+export async function deleteStation(id: string, pin: string): Promise<void> {
+  const res = await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "deleteStation", payload: { id }, pin }),
+  });
+  if (!res.ok) throw new Error("Failed to delete station");
+}
+
+export async function reorderStations(ids: string[], pin: string): Promise<void> {
+  const res = await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "reorderStations", payload: { ids }, pin }),
+  });
+  if (!res.ok) throw new Error("Failed to reorder stations");
+}
+
+export async function addMilestone(milestone: Omit<Milestone, "id">, pin: string): Promise<Milestone> {
+  const res = await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "addMilestone", payload: milestone, pin }),
+  });
+  if (!res.ok) throw new Error("Failed to add milestone");
+  return res.json();
+}
+
+export async function updateMilestone(milestone: Milestone, pin: string): Promise<void> {
+  const res = await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "updateMilestone", payload: milestone, pin }),
+  });
+  if (!res.ok) throw new Error("Failed to update milestone");
+}
+
+export async function deleteMilestone(id: string, pin: string): Promise<void> {
+  const res = await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "deleteMilestone", payload: { id }, pin }),
+  });
+  if (!res.ok) throw new Error("Failed to delete milestone");
+}
+
+export async function updateConfig(config: JourneyConfig, pin: string): Promise<void> {
+  const res = await fetch(API_BASE, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "updateConfig", payload: config, pin }),
+  });
+  if (!res.ok) throw new Error("Failed to update config");
+}
+</file>
+
+<file path="src/lib/dev-time.tsx">
+"use client";
+
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  type ReactNode,
+} from "react";
+
+interface DevTimeContextType {
+  devNow: Date | null;
+  setDevNow: React.Dispatch<React.SetStateAction<Date | null>>;
+  enabled: boolean;
+  setEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+  minDate: Date;
+  maxDate: Date;
+  setMinDate: React.Dispatch<React.SetStateAction<Date>>;
+  setMaxDate: React.Dispatch<React.SetStateAction<Date>>;
+}
+
+const DevTimeContext = createContext<DevTimeContextType>({
+  devNow: null,
+  setDevNow: () => {},
+  enabled: false,
+  setEnabled: () => {},
+  minDate: new Date(),
+  maxDate: new Date(),
+  setMinDate: () => {},
+  setMaxDate: () => {},
+});
+
+export function DevTimeProvider({
+  children,
+  defaultMin,
+  defaultMax,
+}: {
+  children: ReactNode;
+  defaultMin?: Date;
+  defaultMax?: Date;
+}) {
+  const [devNow, setDevNow] = useState<Date | null>(null);
+  const [enabled, setEnabled] = useState(false);
+  const [minDate, setMinDate] = useState(defaultMin || new Date());
+  const [maxDate, setMaxDate] = useState(defaultMax || new Date());
+
+  return (
+    <DevTimeContext.Provider
+      value={{ devNow, setDevNow, enabled, setEnabled, minDate, maxDate, setMinDate, setMaxDate }}
+    >
+      {children}
+    </DevTimeContext.Provider>
+  );
+}
+
+export function useNow(): Date {
+  const { devNow, enabled } = useContext(DevTimeContext);
+  const [realNow, setRealNow] = useState(new Date());
+
+  useEffect(() => {
+    const id = setInterval(() => setRealNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  if (enabled && devNow) return devNow;
+  return realNow;
+}
+
+export function useDevTime() {
+  return useContext(DevTimeContext);
+}
+</file>
+
+<file path="src/lib/types.ts">
+export interface JourneyConfig {
+  startLocation: string;
+  endLocation: string;
+  trainBoardingDate: string;
+  arrivalDate: string;
+}
+
+export interface Station {
+  id: string;
+  name: string;
+  emoji: string;
+  dateTime: string;
+  description: string;
+  imageUrl: string;
+  orderIndex: number;
+  eventType: StationEventType;
+  customMessage: string;
+  spotifyUrl: string;
+}
+
+export type StationEventType =
+  | "normal"
+  | "hug"
+  | "date-night"
+  | "birthday"
+  | "cozy"
+  | "surprise"
+  | "departure";
+
+export interface Milestone {
+  id: string;
+  date: string;
+  title: string;
+  description: string;
+  icon: "salary" | "shopping";
+  imageUrl: string;
+}
+
+export interface SheetData {
+  config: JourneyConfig | null;
+  stations: Station[];
+  milestones: Milestone[];
+}
+
+export interface StationProgress {
+  overallPercent: number;
+  currentLegIndex: number;
+  totalLegs: number;
+  legPercent: number;
+  prevStation: Station | null;
+  nextStation: Station | null;
+}
+</file>
+
+<file path="src/lib/upload.ts">
+const IMGBB_API_KEY = "5c3b4c3c9a7e4b3c9a7e4b3c9a7e4b3c";
+
+export async function uploadImage(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append("image", file);
+  formData.append("key", IMGBB_API_KEY);
+
+  const res = await fetch("https://api.imgbb.com/1/upload", {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`ImgBB upload failed: ${err}`);
+  }
+
+  const data = await res.json();
+  return data.data.url;
+}
+</file>
+
+<file path="src/scripts/Code.gs">
+/**
+ * Google Apps Script — Countdown Journey Tracker
+ *
+ * Deploy as Web App: Extensions → Apps Script → Deploy → New Deployment
+ * - Execute as: Me
+ * - Who has access: Anyone
+ *
+ * Sheet must have 3 tabs: config, stations, milestones
+ * See README for column layout.
+ */
+
+function doGet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  try {
+    const data = {
+      config: getConfig(ss),
+      stations: getStations(ss),
+      milestones: getMilestones(ss),
+    };
+    return jsonResponse(data);
+  } catch (e) {
+    return jsonError(String(e));
+  }
+}
+
+function doPost(e) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  try {
+    const { action, payload } = JSON.parse(e.postData.contents);
+
+    switch (action) {
+      case "addStation":
+        return jsonResponse(addStation(ss, payload));
+      case "updateStation":
+        updateStation(ss, payload);
+        return jsonResponse({ success: true });
+      case "deleteStation":
+        deleteStation(ss, payload.id);
+        return jsonResponse({ success: true });
+      case "reorderStations":
+        reorderStations(ss, payload.ids);
+        return jsonResponse({ success: true });
+      case "addMilestone":
+        return jsonResponse(addMilestone(ss, payload));
+      case "updateMilestone":
+        updateMilestone(ss, payload);
+        return jsonResponse({ success: true });
+      case "deleteMilestone":
+        deleteMilestone(ss, payload.id);
+        return jsonResponse({ success: true });
+      case "updateConfig":
+        updateConfig(ss, payload);
+        return jsonResponse({ success: true });
+      default:
+        return jsonError("Unknown action");
+    }
+  } catch (e) {
+    return jsonError(String(e));
+  }
+}
+
+// ─── Config ──────────────────────────────────────────────────
+
+function getConfig(ss) {
+  const sheet = ss.getSheetByName("config");
+  if (!sheet) return null;
+  const rows = sheet.getDataRange().getValues();
+  const obj = {};
+  for (let i = 1; i < rows.length; i++) {
+    obj[rows[i][0]] = rows[i][1];
+  }
+  return {
+    startLocation: obj.start_location || "",
+    endLocation: obj.end_location || "",
+    trainBoardingDate: obj.train_boarding_date || "",
+    arrivalDate: obj.arrival_date || "",
+  };
+}
+
+function updateConfig(ss, config) {
+  const sheet = ss.getSheetByName("config");
+  if (!sheet) throw new Error("config sheet not found");
+  const rows = sheet.getDataRange().getValues();
+  const map = {};
+  for (let i = 1; i < rows.length; i++) {
+    map[rows[i][0]] = i + 1;
+  }
+  const updates = {
+    start_location: config.startLocation,
+    end_location: config.endLocation,
+    train_boarding_date: config.trainBoardingDate,
+    arrival_date: config.arrivalDate,
+  };
+  Object.entries(updates).forEach(([key, val]) => {
+    if (map[key]) {
+      sheet.getRange(map[key], 2).setValue(val);
+    }
+  });
+}
+
+// ─── Stations ────────────────────────────────────────────────
+
+function getStations(ss) {
+  const sheet = ss.getSheetByName("stations");
+  if (!sheet) return [];
+  const rows = sheet.getDataRange().getValues();
+  const headers = rows[0];
+  const result = [];
+  for (let i = 1; i < rows.length; i++) {
+    if (!rows[i][0]) continue;
+    result.push({
+      id: String(rows[i][0]),
+      name: String(rows[i][1] || ""),
+      emoji: String(rows[i][2] || ""),
+      dateTime: String(rows[i][3] || ""),
+      description: String(rows[i][4] || ""),
+      imageUrl: String(rows[i][5] || ""),
+      orderIndex: Number(rows[i][6]) || 0,
+      eventType: String(rows[i][7] || "normal"),
+      customMessage: String(rows[i][8] || ""),
+      spotifyUrl: String(rows[i][9] || ""),
+    });
+  }
+  return result;
+}
+
+function addStation(ss, payload) {
+  const sheet = ss.getSheetByName("stations");
+  if (!sheet) throw new Error("stations sheet not found");
+  const id = "s" + Date.now();
+  const row = [
+    id,
+    payload.name || "",
+    payload.emoji || "",
+    payload.dateTime || "",
+    payload.description || "",
+    payload.imageUrl || "",
+    payload.orderIndex || 1,
+    payload.eventType || "normal",
+    payload.customMessage || "",
+    payload.spotifyUrl || "",
+  ];
+  sheet.appendRow(row);
+  return { id, ...payload };
+}
+
+function updateStation(ss, payload) {
+  const sheet = ss.getSheetByName("stations");
+  if (!sheet) throw new Error("stations sheet not found");
+  const rows = sheet.getDataRange().getValues();
+  for (let i = 1; i < rows.length; i++) {
+    if (String(rows[i][0]) === payload.id) {
+      const r = i + 1;
+      sheet.getRange(r, 2).setValue(payload.name || "");
+      sheet.getRange(r, 3).setValue(payload.emoji || "");
+      sheet.getRange(r, 4).setValue(payload.dateTime || "");
+      sheet.getRange(r, 5).setValue(payload.description || "");
+      sheet.getRange(r, 6).setValue(payload.imageUrl || "");
+      sheet.getRange(r, 7).setValue(payload.orderIndex || 1);
+      sheet.getRange(r, 8).setValue(payload.eventType || "normal");
+      sheet.getRange(r, 9).setValue(payload.customMessage || "");
+      sheet.getRange(r, 10).setValue(payload.spotifyUrl || "");
+      return;
+    }
+  }
+  throw new Error("Station not found: " + payload.id);
+}
+
+function deleteStation(ss, id) {
+  const sheet = ss.getSheetByName("stations");
+  if (!sheet) throw new Error("stations sheet not found");
+  const rows = sheet.getDataRange().getValues();
+  for (let i = 1; i < rows.length; i++) {
+    if (String(rows[i][0]) === id) {
+      sheet.deleteRow(i + 1);
+      return;
+    }
+  }
+  throw new Error("Station not found: " + id);
+}
+
+function reorderStations(ss, ids) {
+  const sheet = ss.getSheetByName("stations");
+  if (!sheet) throw new Error("stations sheet not found");
+  ids.forEach((id, idx) => {
+    const rows = sheet.getDataRange().getValues();
+    for (let i = 1; i < rows.length; i++) {
+      if (String(rows[i][0]) === id) {
+        sheet.getRange(i + 1, 7).setValue(idx + 1);
+        break;
+      }
+    }
+  });
+}
+
+// ─── Milestones ──────────────────────────────────────────────
+
+function getMilestones(ss) {
+  const sheet = ss.getSheetByName("milestones");
+  if (!sheet) return [];
+  const rows = sheet.getDataRange().getValues();
+  const result = [];
+  for (let i = 1; i < rows.length; i++) {
+    if (!rows[i][0]) continue;
+    result.push({
+      id: String(rows[i][0]),
+      date: String(rows[i][1] || ""),
+      title: String(rows[i][2] || ""),
+      description: String(rows[i][3] || ""),
+      icon: String(rows[i][4] || "salary"),
+      imageUrl: String(rows[i][5] || ""),
+    });
+  }
+  return result;
+}
+
+function addMilestone(ss, payload) {
+  const sheet = ss.getSheetByName("milestones");
+  if (!sheet) throw new Error("milestones sheet not found");
+  const id = "m" + Date.now();
+  const row = [
+    id,
+    payload.date || "",
+    payload.title || "",
+    payload.description || "",
+    payload.icon || "salary",
+    payload.imageUrl || "",
+  ];
+  sheet.appendRow(row);
+  return { id, ...payload };
+}
+
+function updateMilestone(ss, payload) {
+  const sheet = ss.getSheetByName("milestones");
+  if (!sheet) throw new Error("milestones sheet not found");
+  const rows = sheet.getDataRange().getValues();
+  for (let i = 1; i < rows.length; i++) {
+    if (String(rows[i][0]) === payload.id) {
+      const r = i + 1;
+      sheet.getRange(r, 2).setValue(payload.date || "");
+      sheet.getRange(r, 3).setValue(payload.title || "");
+      sheet.getRange(r, 4).setValue(payload.description || "");
+      sheet.getRange(r, 5).setValue(payload.icon || "salary");
+      sheet.getRange(r, 6).setValue(payload.imageUrl || "");
+      return;
+    }
+  }
+  throw new Error("Milestone not found: " + payload.id);
+}
+
+function deleteMilestone(ss, id) {
+  const sheet = ss.getSheetByName("milestones");
+  if (!sheet) throw new Error("milestones sheet not found");
+  const rows = sheet.getDataRange().getValues();
+  for (let i = 1; i < rows.length; i++) {
+    if (String(rows[i][0]) === id) {
+      sheet.deleteRow(i + 1);
+      return;
+    }
+  }
+  throw new Error("Milestone not found: " + id);
+}
+
+// ─── Helpers ─────────────────────────────────────────────────
+
+function jsonResponse(data) {
+  return ContentService.createTextOutput(
+    JSON.stringify(data)
+  ).setMimeType(ContentService.MimeType.JSON);
+}
+
+function jsonError(msg) {
+  return ContentService.createTextOutput(
+    JSON.stringify({ error: msg })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
+</file>
+
+<file path="src/utils/time.ts">
+import type { Station, StationProgress } from "@/lib/types";
+
+export interface Countdown {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+export type JourneyPhase = "pre-boarding" | "in-transit" | "arrived";
+
+export function getCountdown(targetDate: Date, now?: Date): Countdown {
+  const _now = now || new Date();
+  const diffMs = Math.max(targetDate.getTime() - _now.getTime(), 0);
+  const totalSeconds = Math.floor(diffMs / 1000);
+
+  return {
+    days: Math.floor(totalSeconds / 86400),
+    hours: Math.floor((totalSeconds % 86400) / 3600),
+    minutes: Math.floor((totalSeconds % 3600) / 60),
+    seconds: totalSeconds % 60,
+  };
+}
+
+export function getJourneyProgress(
+  trainBoardingDate: Date,
+  arrivalDate: Date,
+  now?: Date
+): number {
+  const _now = now || new Date();
+  if (_now < trainBoardingDate) return 0;
+  if (_now > arrivalDate) return 100;
+
+  const total = arrivalDate.getTime() - trainBoardingDate.getTime();
+  const elapsed = _now.getTime() - trainBoardingDate.getTime();
+
+  return Math.min(Math.round((elapsed / total) * 100), 100);
+}
+
+export function getJourneyPhase(
+  trainBoardingDate: Date,
+  arrivalDate: Date,
+  now?: Date
+): JourneyPhase {
+  const _now = now || new Date();
+  if (_now < trainBoardingDate) return "pre-boarding";
+  if (_now > arrivalDate) return "arrived";
+  return "in-transit";
+}
+
+export function getStationsProgress(stations: Station[], now?: Date): StationProgress {
+  const _now = now || new Date();
+
+  if (!stations.length) {
+    return {
+      overallPercent: 0,
+      currentLegIndex: 0,
+      totalLegs: 0,
+      legPercent: 0,
+      prevStation: null,
+      nextStation: null,
+    };
+  }
+
+  const sorted = [...stations].sort((a, b) => a.orderIndex - b.orderIndex);
+
+  if (_now < new Date(sorted[0].dateTime)) {
+    return {
+      overallPercent: 0,
+      currentLegIndex: 0,
+      totalLegs: sorted.length - 1,
+      legPercent: 0,
+      prevStation: sorted[0],
+      nextStation: null,
+    };
+  }
+
+  if (_now >= new Date(sorted[sorted.length - 1].dateTime)) {
+    return {
+      overallPercent: 100,
+      currentLegIndex: sorted.length - 1,
+      totalLegs: sorted.length - 1,
+      legPercent: 100,
+      prevStation: sorted[sorted.length - 1],
+      nextStation: null,
+    };
+  }
+
+  for (let i = 0; i < sorted.length - 1; i++) {
+    const a = new Date(sorted[i].dateTime).getTime();
+    const b = new Date(sorted[i + 1].dateTime).getTime();
+
+    if (_now.getTime() >= a && _now.getTime() < b) {
+      const legElapsed = _now.getTime() - a;
+      const legTotal = b - a;
+      const legPercent = Math.round((legElapsed / legTotal) * 100);
+
+      const totalLegs = sorted.length - 1;
+      const overallPercent = Math.round(
+        ((i + legPercent / 100) / totalLegs) * 100
+      );
+
+      return {
+        overallPercent,
+        currentLegIndex: i,
+        totalLegs,
+        legPercent,
+        prevStation: sorted[i],
+        nextStation: sorted[i + 1],
+      };
+    }
+  }
+
+  return {
+    overallPercent: 0,
+    currentLegIndex: 0,
+    totalLegs: sorted.length - 1,
+    legPercent: 0,
+    prevStation: null,
+    nextStation: null,
+  };
+}
+
+export function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+export function formatDateTime(dateString: string): string {
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+</file>
+
+<file path="tailwind.config.ts">
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        nunito: ["var(--font-nunito)", "sans-serif"],
+        caveat: ["var(--font-caveat)", "cursive"],
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": { "@/*": ["./src/*"] }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+</file>
+
+</files>
