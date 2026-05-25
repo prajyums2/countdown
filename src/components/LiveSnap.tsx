@@ -7,6 +7,7 @@ import { SwitchCamera, Flashlight, EyeOff, X, Send, ImagePlus } from "lucide-rea
 import type { SnapAllowance } from "@/lib/types";
 import { useProfile } from "@/components/ProfileGate";
 import { sendSnap } from "@/lib/snaps-api";
+import { compressImage } from "@/lib/compress";
 
 interface LiveSnapProps {
   onClose: () => void;
@@ -56,7 +57,8 @@ export default function LiveSnap({ onClose, onSent, showAllowance = false }: Liv
     setSending(true);
     setSendError(false);
     try {
-      await sendSnap(captured, allowance, profile.identity);
+      const compressed = await compressImage(captured);
+      await sendSnap(compressed, allowance, profile.identity);
       onSent();
       onClose();
     } catch {
