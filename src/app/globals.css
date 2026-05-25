@@ -19,17 +19,27 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
   background: #FCE4EC;
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #F48FB1;
-  border-radius: 4px;
+  background: #F9A8D4;
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #F06292;
+  background: #F472B6;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #F9A8D4 #FCE4EC;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 @layer utilities {
@@ -95,6 +105,12 @@ body {
     width: 2px;
     height: 4px;
     background: #F48FB1;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, #FCE4EC 25%, #FFF5F8 50%, #FCE4EC 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
   }
 
   .soft-shadow {

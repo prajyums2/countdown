@@ -3,6 +3,7 @@ import { Nunito, Caveat } from "next/font/google";
 import { DevTimeProvider } from "@/lib/dev-time";
 import ProfileGate from "@/components/ProfileGate";
 import ServiceWorkerRegister from "./ServiceWorkerRegister";
+import { ToastProvider } from "@/components/Toast";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -37,9 +38,11 @@ export default function RootLayout({
     <html lang="en" className={`${nunito.variable} ${caveat.variable}`}>
       <body className="antialiased font-nunito">
         <ServiceWorkerRegister />
-        <DevTimeProvider>
-          <ProfileGate>{children}</ProfileGate>
-        </DevTimeProvider>
+        <ToastProvider>
+          <DevTimeProvider>
+            <ProfileGate>{children}</ProfileGate>
+          </DevTimeProvider>
+        </ToastProvider>
       </body>
     </html>
   );

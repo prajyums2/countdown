@@ -9,17 +9,15 @@ import { fetchSnaps } from "@/lib/snaps-api";
 import SnapViewer from "./SnapViewer";
 
 interface ChatDrawerProps {
-  defaultOpen?: boolean;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
-export default function ChatDrawer({ defaultOpen = false }: ChatDrawerProps) {
+export default function ChatDrawer({ open, onOpenChange }: ChatDrawerProps) {
   const { profile } = useProfile();
-  const [open, setOpen] = useState(defaultOpen);
   const [snaps, setSnaps] = useState<Snap[]>([]);
   const [viewing, setViewing] = useState<Snap | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const unreadCount = snaps.filter((s) => s.status === "unread").length;
 
   useEffect(() => {
     if (!open) return;
@@ -51,19 +49,6 @@ export default function ChatDrawer({ defaultOpen = false }: ChatDrawerProps) {
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        className="fixed bottom-24 sm:bottom-20 left-4 sm:left-6 z-[90] p-3 rounded-full bg-white/80 backdrop-blur-md border border-rose-100/50 shadow-md shadow-rose-200/50 text-rose-400 hover:text-rose-500 hover:bg-white/90 transition-all relative"
-        title="Snaps inbox"
-      >
-        <MessageCircle size={20} />
-        {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-rose-400 text-white text-[0.5rem] flex items-center justify-center font-bold">
-            {unreadCount}
-          </span>
-        )}
-      </button>
-
       <AnimatePresence>
         {open && (
           <motion.div
@@ -73,7 +58,7 @@ export default function ChatDrawer({ defaultOpen = false }: ChatDrawerProps) {
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 200, damping: 26 }}
           >
-            <div className="absolute inset-0 bg-black/10 backdrop-blur-sm" onClick={() => setOpen(false)} />
+            <div className="absolute inset-0 bg-black/10 backdrop-blur-sm" onClick={() => onOpenChange(false)} />
             <div
               className="relative w-full max-w-sm bg-white/90 backdrop-blur-2xl shadow-2xl border-l border-rose-50 flex flex-col"
               style={{ paddingTop: "env(safe-area-inset-top, 0px)", paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
@@ -81,7 +66,7 @@ export default function ChatDrawer({ defaultOpen = false }: ChatDrawerProps) {
               <div className="flex items-center justify-between px-4 pt-4 sm:pt-3 pb-3 border-b border-rose-50 shrink-0">
                 <h2 className="text-base font-caveat text-rose-400">Snaps</h2>
                 <button
-                  onClick={() => setOpen(false)}
+                  onClick={() => onOpenChange(false)}
                   className="p-1.5 rounded-full hover:bg-rose-50 text-slate-400 hover:text-rose-500 transition-colors min-w-[32px] min-h-[32px] flex items-center justify-center"
                 >
                   <X size={18} />

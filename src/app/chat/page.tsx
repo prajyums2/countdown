@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import ChatDrawer from "@/components/ChatDrawer";
 
 export default function ChatPage() {
-  return <ChatDrawer defaultOpen />;
+  const [open, setOpen] = useState(true);
+  return <ChatDrawer open={open} onOpenChange={setOpen} />;
 }

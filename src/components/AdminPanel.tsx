@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import type { Station, Milestone, JourneyConfig, StationEventType } from "@/lib/types";
 import { uploadImage } from "@/lib/upload";
+import { useToast } from "./Toast";
 import {
   addStation,
   updateStation,
@@ -46,6 +47,7 @@ function ImageUploader({
   currentUrl: string;
   onUpload: (url: string) => void;
 }) {
+  const { toast } = useToast();
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -57,7 +59,7 @@ function ImageUploader({
       const url = await uploadImage(file);
       onUpload(url);
     } catch {
-      alert("Upload failed");
+      toast("Upload failed", "error");
     }
     setUploading(false);
   };
@@ -272,6 +274,7 @@ export default function AdminPanel({
   onRefresh: () => void;
   onClose: () => void;
 }) {
+  const { toast } = useToast();
   const [tab, setTab] = useState<Tab>("stations");
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState<Station | Milestone | null>(null);
@@ -304,7 +307,7 @@ export default function AdminPanel({
       setEditing(null);
       onRefresh();
     } catch (e) {
-      alert("Failed to save station");
+      toast("Failed to save station", "error");
     }
     setSaving(false);
   };
@@ -315,7 +318,7 @@ export default function AdminPanel({
       await deleteStation(id, pin);
       onRefresh();
     } catch {
-      alert("Failed to delete");
+      toast("Failed to delete", "error");
     }
   };
 
@@ -331,7 +334,7 @@ export default function AdminPanel({
       setEditing(null);
       onRefresh();
     } catch {
-      alert("Failed to save milestone");
+      toast("Failed to save milestone", "error");
     }
     setSaving(false);
   };
@@ -342,7 +345,7 @@ export default function AdminPanel({
       await deleteMilestone(id, pin);
       onRefresh();
     } catch {
-      alert("Failed to delete");
+      toast("Failed to delete", "error");
     }
   };
 
@@ -361,7 +364,7 @@ export default function AdminPanel({
       );
       onRefresh();
     } catch {
-      alert("Failed to update config");
+      toast("Failed to update config", "error");
     }
     setSaving(false);
   };

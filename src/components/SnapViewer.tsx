@@ -3,9 +3,16 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Eye, Send, Camera } from "lucide-react";
-import type { Snap, SnapAllowance, SnapComment } from "@/lib/types";
+import type { Snap, SnapAllowance, SnapComment, ProfileId } from "@/lib/types";
 import { fetchSnapContent, markSnapViewed, addComment } from "@/lib/snaps-api";
 import { useProfile } from "@/components/ProfileGate";
+import { useToast } from "./Toast";
+import {
+  subscribeToSnap,
+  emitTyping,
+  emitStopTyping,
+  unsubscribeFromSnap,
+} from "@/lib/realtime";
 
 interface SnapViewerProps {
   snap: Snap;
@@ -15,18 +22,23 @@ interface SnapViewerProps {
 
 export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapViewerProps) {
   const { profile } = useProfile();
+  const { toast } = useToast();
   const [content, setContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [timer, setTimer] = useState<number | null>(null);
+  const [zoomed, setZoomed] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const viewedRef = useRef(false);
   const onCloseRef = useRef(onClose);
+  const [dragY, setDragY] = useState(0);
   onCloseRef.current = onClose;
 
   const [comments, setComments] = useState<SnapComment[]>(snap.comments || []);
   const [commentText, setCommentText] = useState("");
   const [sendingComment, setSendingComment] = useState(false);
-  const [commentError, setCommentError] = useState(false);
+  const [typingSender, setTypingSender] = useState<ProfileId | null>(null);
+  const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const typingEmitRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleClose = useCallback(() => {
     if (!viewedRef.current) {
@@ -47,6 +59,21 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
     });
     return () => { cancelled = true; };
   }, [snap.fileId]);
+
+  useEffect(() => {
+    subscribeToSnap(
+      snap.id,
+      (senderId) => {
+        if (senderId !== profile?.identity) {
+          setTypingSender(senderId);
+          if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
+          typingTimerRef.current = setTimeout(() => setTypingSender(null), 3000);
+        }
+      },
+      () => setTypingSender(null)
+    );
+    return () => { unsubscribeFromSnap(); };
+  }, [snap.id, profile?.identity]);
 
   useEffect(() => {
     if (content && (snap.allowance === "once" || snap.allowance === "twice")) {
@@ -70,7 +97,6 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
   const handleSendComment = async () => {
     if (!commentText.trim() || !profile) return;
     setSendingComment(true);
-    setCommentError(false);
     try {
       await addComment(snap.id, commentText.trim(), profile.identity);
       setComments((prev) => [
@@ -79,8 +105,7 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
       ]);
       setCommentText("");
     } catch {
-      setCommentError(true);
-      setTimeout(() => setCommentError(false), 3000);
+      toast("Couldn't send comment", "error");
     }
     setSendingComment(false);
   };
@@ -94,6 +119,38 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
 
   const maxViews = { once: 1, twice: 2, keep: Infinity }[snap.allowance as SnapAllowance] || 1;
   const viewsRemaining = Math.max(0, maxViews - snap.view_count - (content ? 1 : 0));
+
+  const scale = 1 - Math.abs(dragY) * 0.003;
+  const opacity = 1 - Math.abs(dragY) * 0.006;
+
+  if (zoomed && content) {
+    return (
+      <motion.div
+        className="fixed inset-0 z-[170] bg-black flex items-center justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={() => setZoomed(false)}
+      >
+        <button
+          onClick={() => setZoomed(false)}
+          className="absolute top-4 right-4 z-10 p-2 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full bg-white/10 text-white/70 hover:text-white"
+          style={{ top: "calc(env(safe-area-inset-top, 0px) + 8px)" }}
+        >
+          <X size={20} />
+        </button>
+        <motion.img
+          src={content}
+          alt="Snap"
+          className="max-w-full max-h-full object-contain"
+          initial={{ scale: 0.92 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 200, damping: 24 }}
+          onClick={(e) => e.stopPropagation()}
+        />
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
@@ -142,14 +199,25 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
       {content && (
         <div className="flex-1 flex flex-col items-center justify-center overflow-hidden px-2">
           <motion.div
-            className="relative w-full max-w-md mx-auto aspect-[9/16] max-h-[75vh] rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-md mx-auto aspect-[9/16] max-h-[75vh] rounded-2xl overflow-hidden shadow-2xl cursor-pointer"
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
+            animate={{ scale: scale, opacity: opacity, y: 20 + dragY }}
             transition={{ type: "spring", stiffness: 200, damping: 24 }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => { e.stopPropagation(); setZoomed(true); }}
+            drag="y"
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={0.3}
+            onDrag={(_, info) => setDragY(info.offset.y)}
+            onDragEnd={(_, info) => {
+              if (Math.abs(info.offset.y) > 80) {
+                handleClose();
+              } else {
+                setDragY(0);
+              }
+            }}
           >
             <img src={content} alt="Snap" className="w-full h-full object-cover" />
-            
+
             {timer !== null && (
               <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10">
                 <div className="bg-black/40 backdrop-blur-md rounded-full px-3 py-1">
@@ -175,7 +243,7 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
               </div>
             </div>
 
-            <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+            <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none">
               <div className="flex items-center justify-between text-white/70 text-xs font-caveat">
                 <span>
                   {snap.allowance === "keep"
@@ -187,7 +255,7 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
             </div>
 
             {comments.length > 0 && (
-              <div className="absolute bottom-14 inset-x-0 px-4 space-y-1">
+              <div className="absolute bottom-14 inset-x-0 px-4 space-y-1 pointer-events-none">
                 {comments.map((c, i) => (
                   <div key={i} className="bg-black/30 backdrop-blur-sm rounded-lg px-2.5 py-1 inline-block">
                     <span className="text-[0.55rem] text-white/50 mr-1">{c.senderId === "meghs" ? "🌸" : "🎮"}</span>
@@ -219,7 +287,18 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
           <div className="flex items-center gap-2">
             <input
               value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
+              onChange={(e) => {
+                setCommentText(e.target.value);
+                if (profile) {
+                  emitTyping(snap.id, profile.identity);
+                  if (typingEmitRef.current) clearTimeout(typingEmitRef.current);
+                  typingEmitRef.current = setTimeout(() => {
+                    if (profile) emitStopTyping(snap.id);
+                  }, 1500);
+                }
+              }}
+              onFocus={() => { if (profile) emitTyping(snap.id, profile.identity); }}
+              onBlur={() => { if (profile) emitStopTyping(snap.id); }}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();
@@ -241,8 +320,20 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
               )}
             </button>
           </div>
-          {commentError && (
-            <p className="text-[0.55rem] text-rose-300 text-center">Failed to send comment. Try again.</p>
+          {typingSender && (
+            <motion.div
+              className="flex items-center gap-1.5 text-[0.55rem] text-white/40 font-caveat px-1"
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <span>{typingSender === "meghs" ? "🌸" : "🎮"}</span>
+              <span>{typingSender === "meghs" ? "Meghs" : "Prajyu"} is typing</span>
+              <span className="flex gap-0.5">
+                <motion.span className="w-1 h-1 rounded-full bg-white/40" animate={{ y: [0, -3, 0] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0 }} />
+                <motion.span className="w-1 h-1 rounded-full bg-white/40" animate={{ y: [0, -3, 0] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0.15 }} />
+                <motion.span className="w-1 h-1 rounded-full bg-white/40" animate={{ y: [0, -3, 0] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0.3 }} />
+              </span>
+            </motion.div>
           )}
         </div>
       )}
