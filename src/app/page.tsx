@@ -22,6 +22,7 @@ import AdminPanel from "@/components/AdminPanel";
 import DevTimeSlider from "@/components/DevTimeSlider";
 import LiveSnap from "@/components/LiveSnap";
 import ChatDrawer from "@/components/ChatDrawer";
+import SnapWidget from "@/components/SnapWidget";
 
 function mapStaticMilestone(m: StaticMilestone, index: number): Milestone {
   return {
@@ -287,6 +288,8 @@ export default function Home() {
           </div>
         )}
       </AnimatePresence>
+
+      <SnapWidget />
 
       <ChatDrawer />
 
