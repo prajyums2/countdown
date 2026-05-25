@@ -37,6 +37,9 @@ next-env.d.ts
 /cypress/videos
 /cypress/screenshots
 
+# Generated files
+repomix-output.xml
+
 # System Files
 .DS_Store
 Thumbs.db
