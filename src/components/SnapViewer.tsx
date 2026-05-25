@@ -26,6 +26,7 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
   const [comments, setComments] = useState<SnapComment[]>(snap.comments || []);
   const [commentText, setCommentText] = useState("");
   const [sendingComment, setSendingComment] = useState(false);
+  const [commentError, setCommentError] = useState(false);
 
   const handleClose = useCallback(() => {
     if (!viewedRef.current) {
@@ -69,6 +70,7 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
   const handleSendComment = async () => {
     if (!commentText.trim() || !profile) return;
     setSendingComment(true);
+    setCommentError(false);
     try {
       await addComment(snap.id, commentText.trim(), profile.identity);
       setComments((prev) => [
@@ -76,7 +78,10 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
         { senderId: profile.identity, message: commentText.trim(), timestamp: new Date().toISOString() },
       ]);
       setCommentText("");
-    } catch {}
+    } catch {
+      setCommentError(true);
+      setTimeout(() => setCommentError(false), 3000);
+    }
     setSendingComment(false);
   };
 
@@ -236,6 +241,9 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
               )}
             </button>
           </div>
+          {commentError && (
+            <p className="text-[0.55rem] text-rose-300 text-center">Failed to send comment. Try again.</p>
+          )}
         </div>
       )}
     </motion.div>

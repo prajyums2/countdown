@@ -29,6 +29,7 @@ export default function LiveSnap({ onClose, onSent, showAllowance = false }: Liv
   const [flash, setFlash] = useState(false);
   const [allowance, setAllowance] = useState<SnapAllowance>("keep");
   const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
 
   const capture = useCallback(() => {
     const img = webcamRef.current?.getScreenshot();
@@ -43,6 +44,7 @@ export default function LiveSnap({ onClose, onSent, showAllowance = false }: Liv
       if (typeof reader.result === "string") setCaptured(reader.result);
     };
     reader.readAsDataURL(file);
+    e.target.value = "";
   };
 
   const retake = () => {
@@ -52,12 +54,15 @@ export default function LiveSnap({ onClose, onSent, showAllowance = false }: Liv
   const handleSend = async () => {
     if (!captured || !profile) return;
     setSending(true);
+    setSendError(false);
     try {
       await sendSnap(captured, allowance, profile.identity);
       onSent();
       onClose();
     } catch {
       setSending(false);
+      setSendError(true);
+      setTimeout(() => setSendError(false), 3000);
     }
   };
 
@@ -175,6 +180,9 @@ export default function LiveSnap({ onClose, onSent, showAllowance = false }: Liv
               )}
             </button>
           </div>
+          {sendError && (
+            <p className="text-[0.55rem] text-rose-300 text-center">Failed to send snap. Try again.</p>
+          )}
         </div>
       )}
     </motion.div>

@@ -54,14 +54,8 @@ export async function fetchSnapContent(
 }
 
 export async function markSnapViewed(snapId: string): Promise<void> {
-  if (DIRECT_URL) {
-    try {
-      await appsScriptFetch({ action: "updateSnapView", payload: { snapId } });
-      return;
-    } catch {}
-  }
-
-  await fetch(`${API}?action=markViewed&snapId=${snapId}`, { cache: "no-store" });
+  const res = await fetch(`${API}?action=markViewed&snapId=${snapId}`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to mark snap viewed");
 }
 
 export async function addComment(
@@ -69,15 +63,9 @@ export async function addComment(
   message: string,
   senderId: ProfileId
 ): Promise<void> {
-  if (DIRECT_URL) {
-    try {
-      await appsScriptFetch({ action: "addComment", payload: { snapId, message, senderId } });
-      return;
-    } catch {}
-  }
-
-  await fetch(
+  const res = await fetch(
     `${API}?action=addComment&snapId=${snapId}&message=${encodeURIComponent(message)}&senderId=${senderId}`,
     { cache: "no-store" }
   );
+  if (!res.ok) throw new Error("Failed to add comment");
 }
