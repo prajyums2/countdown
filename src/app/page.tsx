@@ -23,6 +23,7 @@ import LiveSnap from "@/components/LiveSnap";
 import ChatDrawer from "@/components/ChatDrawer";
 import SnapWidget from "@/components/SnapWidget";
 import BottomNav from "@/components/BottomNav";
+import LoveLetterCard from "@/components/LoveLetterCard";
 import SplashScreen from "@/components/SplashScreen";
 import { MilestoneSkeleton, TrackSkeleton } from "@/components/LoadingSkeleton";
 import { useProfile } from "@/components/ProfileGate";
@@ -210,6 +211,8 @@ export default function Home() {
             <div className="mb-12">
               <HeroCountdown config={config} />
             </div>
+
+            <LoveLetterCard />
 
             <div className="mb-6">
               <SnapWidget onRequestSendSnap={() => setShowCamera(true)} />
