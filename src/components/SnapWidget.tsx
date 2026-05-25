@@ -21,7 +21,7 @@ export default function SnapWidget({ onRequestSendSnap }: SnapWidgetProps) {
 
   useEffect(() => {
     const load = async () => {
-      if (!profile?.identity) return;
+      if (!profile?.identity || document.hidden) return;
       try {
         const snaps = await fetchSnaps(profile.identity);
         const unread = snaps.filter((s) => s.status === "unread");
@@ -38,10 +38,13 @@ export default function SnapWidget({ onRequestSendSnap }: SnapWidgetProps) {
         }
       } catch {}
     };
+    const onVisible = () => { if (!document.hidden) load(); };
+    document.addEventListener("visibilitychange", onVisible);
     load();
-    pollRef.current = setInterval(load, 5000);
+    pollRef.current = setInterval(load, 30000);
     return () => {
       if (pollRef.current) clearInterval(pollRef.current);
+      document.removeEventListener("visibilitychange", onVisible);
     };
   }, [profile?.identity]);
 

@@ -24,15 +24,19 @@ export default function ChatDrawer({ defaultOpen = false }: ChatDrawerProps) {
   useEffect(() => {
     if (!open) return;
     const load = async () => {
+      if (document.hidden) return;
       try {
         const data = await fetchSnaps(profile?.identity);
         setSnaps(data);
       } catch {}
     };
+    const onVisible = () => { if (!document.hidden && open) load(); };
+    document.addEventListener("visibilitychange", onVisible);
     load();
-    intervalRef.current = setInterval(load, 5000);
+    intervalRef.current = setInterval(load, 15000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
+      document.removeEventListener("visibilitychange", onVisible);
     };
   }, [open, profile?.identity]);
 
