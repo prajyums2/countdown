@@ -3,7 +3,7 @@
 import { useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Webcam from "react-webcam";
-import { SwitchCamera, Flashlight, EyeOff, X, Send } from "lucide-react";
+import { SwitchCamera, Flashlight, EyeOff, X, Send, ImagePlus } from "lucide-react";
 import type { SnapAllowance } from "@/lib/types";
 import { useProfile } from "@/components/ProfileGate";
 import { sendSnap } from "@/lib/snaps-api";
@@ -11,6 +11,7 @@ import { sendSnap } from "@/lib/snaps-api";
 interface LiveSnapProps {
   onClose: () => void;
   onSent: () => void;
+  showAllowance?: boolean;
 }
 
 const ALLOWANCE_OPTIONS: { value: SnapAllowance; label: string; icon: string }[] = [
@@ -19,19 +20,30 @@ const ALLOWANCE_OPTIONS: { value: SnapAllowance; label: string; icon: string }[]
   { value: "keep", label: "Keep", icon: "📌" },
 ];
 
-export default function LiveSnap({ onClose, onSent }: LiveSnapProps) {
+export default function LiveSnap({ onClose, onSent, showAllowance = false }: LiveSnapProps) {
   const webcamRef = useRef<Webcam>(null);
+  const galleryRef = useRef<HTMLInputElement>(null);
   const { profile } = useProfile();
   const [captured, setCaptured] = useState<string | null>(null);
   const [facing, setFacing] = useState<"user" | "environment">("user");
   const [flash, setFlash] = useState(false);
-  const [allowance, setAllowance] = useState<SnapAllowance>("once");
+  const [allowance, setAllowance] = useState<SnapAllowance>("keep");
   const [sending, setSending] = useState(false);
 
   const capture = useCallback(() => {
     const img = webcamRef.current?.getScreenshot();
     if (img) setCaptured(img);
   }, []);
+
+  const handleGalleryFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") setCaptured(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
 
   const retake = () => {
     setCaptured(null);
@@ -107,26 +119,42 @@ export default function LiveSnap({ onClose, onSent }: LiveSnapProps) {
           >
             {flash ? <Flashlight size={22} /> : <EyeOff size={22} />}
           </button>
+          <button
+            onClick={() => galleryRef.current?.click()}
+            className="p-3 sm:p-3.5 rounded-full bg-white/10 text-white/70 hover:text-white hover:bg-white/20 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
+            title="Upload from gallery"
+          >
+            <ImagePlus size={22} />
+          </button>
+          <input
+            ref={galleryRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleGalleryFile}
+          />
         </div>
       )}
 
       {captured && (
         <div className="space-y-4 pb-6 sm:pb-8 px-4 shrink-0">
-          <div className="flex items-center justify-center gap-2 sm:gap-3">
-            {ALLOWANCE_OPTIONS.map((opt) => (
-              <button
-                key={opt.value}
-                onClick={() => setAllowance(opt.value)}
-                className={`px-3 sm:px-4 py-2 rounded-full text-xs font-caveat transition-all ${
-                  allowance === opt.value
-                    ? "bg-rose-400 text-white shadow-lg"
-                    : "bg-white/10 text-white/60 hover:bg-white/20"
-                }`}
-              >
-                {opt.icon} {opt.label}
-              </button>
-            ))}
-          </div>
+          {showAllowance && (
+            <div className="flex items-center justify-center gap-2 sm:gap-3">
+              {ALLOWANCE_OPTIONS.map((opt) => (
+                <button
+                  key={opt.value}
+                  onClick={() => setAllowance(opt.value)}
+                  className={`px-3 sm:px-4 py-2 rounded-full text-xs font-caveat transition-all ${
+                    allowance === opt.value
+                      ? "bg-rose-400 text-white shadow-lg"
+                      : "bg-white/10 text-white/60 hover:bg-white/20"
+                  }`}
+                >
+                  {opt.icon} {opt.label}
+                </button>
+              ))}
+            </div>
+          )}
 
           <div className="flex items-center justify-center gap-4">
             <button

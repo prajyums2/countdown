@@ -40,6 +40,7 @@ const fallbackConfig: JourneyConfig = {
   endLocation: siteConfig.journey.endLocation,
   trainBoardingDate: siteConfig.journey.trainBoardingDate,
   arrivalDate: siteConfig.journey.arrivalDate,
+  showSnapAllowance: false,
 };
 
 function SectionDivider({ className }: { className?: string }) {
@@ -172,6 +173,10 @@ export default function Home() {
           <HeroCountdown config={config} />
         </div>
 
+        <div className="mb-6">
+          <SnapWidget onRequestSendSnap={() => setShowCamera(true)} />
+        </div>
+
         {stations.length > 0 && (
           <>
             <SectionDivider className="mb-8" />
@@ -289,13 +294,15 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <SnapWidget />
-
       <ChatDrawer />
 
       <AnimatePresence>
         {showCamera && (
-          <LiveSnap onClose={() => setShowCamera(false)} onSent={() => setShowCamera(false)} />
+          <LiveSnap
+            onClose={() => setShowCamera(false)}
+            onSent={() => setShowCamera(false)}
+            showAllowance={config.showSnapAllowance}
+          />
         )}
       </AnimatePresence>
 

@@ -36,6 +36,7 @@ function doPost(e) {
       case "getSnaps": return jsonResponse(getSnaps(ss, payload));
       case "getSnapContent": return jsonResponse(getSnapContent(ss, payload));
       case "updateSnapView": return jsonResponse(updateSnapView(ss, payload));
+      case "addComment": return jsonResponse(addComment(ss, payload));
       default: return jsonError("Unknown action");
     }
   } catch (e) {
@@ -56,6 +57,7 @@ function getConfig(ss) {
     endLocation: obj.end_location || "",
     trainBoardingDate: obj.train_boarding_date || "",
     arrivalDate: obj.arrival_date || "",
+    showSnapAllowance: obj.show_snap_allowance === "true",
   };
 }
 
@@ -70,6 +72,7 @@ function updateConfig(ss, config) {
     end_location: config.endLocation,
     train_boarding_date: config.trainBoardingDate,
     arrival_date: config.arrivalDate,
+    show_snap_allowance: config.showSnapAllowance ? "true" : "false",
   };
   Object.entries(updates).forEach(([key, val]) => {
     if (map[key]) sheet.getRange(map[key], 2).setValue(val);
@@ -215,7 +218,7 @@ function ensureSnapsSheet(ss) {
   let sheet = ss.getSheetByName("snaps");
   if (!sheet) {
     sheet = ss.insertSheet("snaps");
-    sheet.appendRow(["id", "fileId", "senderId", "timestamp", "status", "allowance", "view_count"]);
+    sheet.appendRow(["id", "fileId", "senderId", "timestamp", "status", "allowance", "view_count", "comments"]);
   }
   return sheet;
 }
@@ -225,7 +228,7 @@ function addSnap(ss, payload) {
   const id = "snap_" + Date.now();
   const fileId = createDriveFile(id, payload.encryptedContent);
   const now = new Date().toISOString();
-  sheet.appendRow([id, fileId, payload.senderId, now, "unread", payload.allowance, 0]);
+  sheet.appendRow([id, fileId, payload.senderId, now, "unread", payload.allowance, 0, "[]"]);
   return { id, fileId };
 }
 
@@ -250,6 +253,8 @@ function getSnaps(ss, payload) {
   const snaps = [];
   for (let i = 1; i < rows.length; i++) {
     if (!rows[i][0]) continue;
+    var comments = [];
+    try { comments = JSON.parse(rows[i][7] || "[]"); } catch(e) {}
     snaps.push({
       id: String(rows[i][0]),
       fileId: String(rows[i][1]),
@@ -258,6 +263,7 @@ function getSnaps(ss, payload) {
       status: String(rows[i][4]),
       allowance: String(rows[i][5]),
       view_count: Number(rows[i][6]) || 0,
+      comments: comments,
     });
   }
   if (payload && payload.identity) {
@@ -274,6 +280,8 @@ function getSnapContent(ss, payload) {
     if (String(rows[i][1]) === payload.fileId) {
       const file = DriveApp.getFileById(payload.fileId);
       const content = file.getBlob().getDataAsString();
+      var comments = [];
+      try { comments = JSON.parse(rows[i][7] || "[]"); } catch(e) {}
       return {
         content,
         snap: {
@@ -284,6 +292,7 @@ function getSnapContent(ss, payload) {
           status: String(rows[i][4]),
           allowance: String(rows[i][5]),
           view_count: Number(rows[i][6]) || 0,
+          comments: comments,
         },
       };
     }
@@ -307,6 +316,26 @@ function updateSnapView(ss, payload) {
         sheet.getRange(r, 5).setValue("viewed");
       }
       return { success: true, view_count: newCount, status: newCount >= maxViews ? "viewed" : "unread" };
+    }
+  }
+  throw new Error("Snap not found: " + payload.snapId);
+}
+
+function addComment(ss, payload) {
+  const sheet = ss.getSheetByName("snaps");
+  if (!sheet) throw new Error("snaps sheet not found");
+  const rows = sheet.getDataRange().getValues();
+  for (let i = 1; i < rows.length; i++) {
+    if (String(rows[i][0]) === payload.snapId) {
+      const comments = [];
+      try { comments = JSON.parse(rows[i][7] || "[]"); } catch(e) {}
+      comments.push({
+        senderId: payload.senderId,
+        message: payload.message,
+        timestamp: new Date().toISOString(),
+      });
+      sheet.getRange(i + 1, 8).setValue(JSON.stringify(comments));
+      return { success: true, comments };
     }
   }
   throw new Error("Snap not found: " + payload.snapId);

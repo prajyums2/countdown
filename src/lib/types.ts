@@ -3,6 +3,7 @@ export interface JourneyConfig {
   endLocation: string;
   trainBoardingDate: string;
   arrivalDate: string;
+  showSnapAllowance?: boolean;
 }
 
 export interface Station {
@@ -62,6 +63,12 @@ export interface Profile {
 export type SnapAllowance = "once" | "twice" | "keep";
 export type SnapStatus = "unread" | "viewed";
 
+export interface SnapComment {
+  senderId: ProfileId;
+  message: string;
+  timestamp: string;
+}
+
 export interface Snap {
   id: string;
   fileId: string;
@@ -70,4 +77,5 @@ export interface Snap {
   status: SnapStatus;
   allowance: SnapAllowance;
   view_count: number;
+  comments?: SnapComment[];
 }

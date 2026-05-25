@@ -285,6 +285,9 @@ export default function AdminPanel({
   const [arrivalDate, setArrivalDate] = useState(
     config.arrivalDate?.slice(0, 16) || ""
   );
+  const [showSnapAllowance, setShowSnapAllowance] = useState(
+    config.showSnapAllowance || false
+  );
 
   const handleSaveStation = async (data: Partial<Station>) => {
     setSaving(true);
@@ -352,6 +355,7 @@ export default function AdminPanel({
           endLocation,
           trainBoardingDate: boardingDate + ":00",
           arrivalDate: arrivalDate + ":00",
+          showSnapAllowance,
         },
         pin
       );
@@ -594,6 +598,23 @@ export default function AdminPanel({
                       className="w-full px-3 py-2 text-sm rounded-lg border border-rose-100 bg-white outline-none focus:border-rose-300"
                     />
                   </div>
+                </div>
+                <div className="flex items-center justify-between py-2">
+                  <label className="text-[0.6rem] uppercase tracking-wider text-slate-400 font-semibold">
+                    Show snap allowance
+                  </label>
+                  <button
+                    onClick={() => setShowSnapAllowance((v) => !v)}
+                    className={`relative w-10 h-5 rounded-full transition-colors ${
+                      showSnapAllowance ? "bg-rose-400" : "bg-slate-200"
+                    }`}
+                  >
+                    <motion.div
+                      className="absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white shadow-sm"
+                      animate={{ x: showSnapAllowance ? 20 : 0 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    />
+                  </button>
                 </div>
                 <button
                   onClick={handleSaveConfig}

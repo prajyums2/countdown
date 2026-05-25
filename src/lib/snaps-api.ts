@@ -63,3 +63,21 @@ export async function markSnapViewed(snapId: string): Promise<void> {
 
   await fetch(`${API}?action=markViewed&snapId=${snapId}`, { cache: "no-store" });
 }
+
+export async function addComment(
+  snapId: string,
+  message: string,
+  senderId: ProfileId
+): Promise<void> {
+  if (DIRECT_URL) {
+    try {
+      await appsScriptFetch({ action: "addComment", payload: { snapId, message, senderId } });
+      return;
+    } catch {}
+  }
+
+  await fetch(
+    `${API}?action=addComment&snapId=${snapId}&message=${encodeURIComponent(message)}&senderId=${senderId}`,
+    { cache: "no-store" }
+  );
+}

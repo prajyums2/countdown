@@ -87,6 +87,17 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(data);
     }
 
+    if (action === "addComment") {
+      const snapId = searchParams.get("snapId");
+      const message = searchParams.get("message");
+      const senderId = searchParams.get("senderId");
+      if (!snapId || !message || !senderId) {
+        return NextResponse.json({ error: "Missing snapId, message, or senderId" }, { status: 400 });
+      }
+      const data = await fetchScript({ action: "addComment", payload: { snapId, message, senderId } });
+      return NextResponse.json(data);
+    }
+
     return NextResponse.json({ error: "Unknown action" }, { status: 400 });
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 502 });
