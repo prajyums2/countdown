@@ -14,13 +14,26 @@ function decrypt(data: string): string {
 }
 
 async function fetchScript(body: Record<string, unknown>) {
+  if (!APPS_SCRIPT_URL) {
+    throw new Error("APPS_SCRIPT_URL not configured in Vercel env vars");
+  }
   const res = await fetch(APPS_SCRIPT_URL, {
     method: "POST",
     cache: "no-store",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "User-Agent": "Mozilla/5.0 (compatible; Next.js/14)",
+    },
     body: JSON.stringify(body),
   });
   const text = await res.text();
+  if (text.startsWith("<!DOCTYPE") || text.startsWith("<html")) {
+    throw new Error(
+      "Apps Script returned an HTML page instead of JSON — " +
+      "ensure the web app is deployed as 'Anyone, even anonymous' " +
+      "and the URL in Vercel env vars is correct"
+    );
+  }
   return JSON.parse(text);
 }
 
@@ -53,11 +66,6 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const action = searchParams.get("action") || "getSnaps";
     const identity = searchParams.get("identity");
-
-    if (action === "getSnaps") {
-      const data = await fetchScript({ action: "getSnaps", payload: { identity } });
-      return NextResponse.json(data);
-    }
 
     if (action === "getSnapContent") {
       const fileId = searchParams.get("fileId");
