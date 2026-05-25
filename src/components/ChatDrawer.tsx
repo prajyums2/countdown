@@ -109,8 +109,10 @@ function SnapCard({ snap, onView }: { snap: Snap; onView: (s: Snap) => void }) {
   const { profile } = useProfile();
   const isUnread = snap.status === "unread";
   const isSent = snap.senderId === profile?.identity;
-  const otherName = snap.senderId === "meghs" ? "Prajyu" : "Meghs";
-  const otherEmoji = snap.senderId === "meghs" ? "🎮" : "🌸";
+  const senderName = snap.senderId === "meghs" ? "Meghs" : "Prajyu";
+  const senderEmoji = snap.senderId === "meghs" ? "🌸" : "🎮";
+  const recipientName = snap.senderId === "meghs" ? "Prajyu" : "Meghs";
+  const recipientEmoji = snap.senderId === "meghs" ? "🎮" : "🌸";
   const commentCount = snap.comments?.length || 0;
   return (
     <motion.button
@@ -126,11 +128,11 @@ function SnapCard({ snap, onView }: { snap: Snap; onView: (s: Snap) => void }) {
       <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0 ${
         isUnread ? "bg-rose-100" : "bg-slate-50"
       }`}>
-        {otherEmoji}
+        {isSent ? recipientEmoji : senderEmoji}
       </div>
       <div className="flex-1 min-w-0">
         <p className={`text-xs sm:text-sm truncate ${isUnread ? "font-semibold text-slate-700" : "text-slate-500"}`}>
-          {isSent ? `To ${otherName}` : `From ${otherName}`}
+          {isSent ? `To ${recipientName}` : `From ${senderName}`}
         </p>
         <p className="text-[0.55rem] sm:text-[0.6rem] text-slate-400 font-caveat">
           {new Date(snap.timestamp).toLocaleString()}
