@@ -4,7 +4,8 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Eye, Send, Camera } from "lucide-react";
 import type { Snap, SnapAllowance, SnapComment, ProfileId } from "@/lib/types";
-import { fetchSnapContent, markSnapViewed, addComment } from "@/lib/snaps-api";
+import { fetchEncryptedContent, markSnapViewed, addComment } from "@/lib/snaps-api";
+import { decryptSnapContent } from "@/lib/crypto";
 import { useProfile } from "@/components/ProfileGate";
 import { useToast } from "./Toast";
 import {
@@ -51,9 +52,10 @@ export default function SnapViewer({ snap, onClose, onRequestSendSnap }: SnapVie
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    fetchSnapContent(snap.fileId).then((data) => {
+    fetchEncryptedContent(snap.fileId).then((data) => {
       if (cancelled) return;
-      setContent(data.content);
+      const decrypted = decryptSnapContent(data.content);
+      setContent(decrypted);
       setComments(data.snap.comments || []);
       setLoading(false);
     });

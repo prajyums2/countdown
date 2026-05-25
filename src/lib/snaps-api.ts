@@ -53,6 +53,16 @@ export async function fetchSnapContent(
   return res.json();
 }
 
+export async function fetchEncryptedContent(
+  fileId: string
+): Promise<{ content: string; snap: Snap }> {
+  const res = await fetch(`${API}?action=getEncryptedContent&fileId=${fileId}`, {
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error("Failed to fetch encrypted content");
+  return res.json();
+}
+
 export async function markSnapViewed(snapId: string): Promise<void> {
   const res = await fetch(`${API}?action=markViewed&snapId=${snapId}`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to mark snap viewed");

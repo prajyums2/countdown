@@ -80,6 +80,13 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ content: decrypted, snap: data.snap });
     }
 
+    if (action === "getEncryptedContent") {
+      const fileId = searchParams.get("fileId");
+      if (!fileId) return NextResponse.json({ error: "Missing fileId" }, { status: 400 });
+      const data = await fetchScript({ action: "getSnapContent", payload: { fileId } });
+      return NextResponse.json({ content: data.content, snap: data.snap });
+    }
+
     if (action === "markViewed") {
       const snapId = searchParams.get("snapId");
       if (!snapId) return NextResponse.json({ error: "Missing snapId" }, { status: 400 });
