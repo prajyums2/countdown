@@ -231,8 +231,7 @@ function addSnap(ss, payload) {
 
 function createDriveFile(snapId, content) {
   const folder = getSnapsFolder();
-  const file = DriveApp.createFile(snapId + ".txt", content, "text/plain");
-  file.setParents([folder]);
+  const file = folder.createFile(snapId + ".txt", content, "text/plain");
   file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
   return file.getId();
 }
