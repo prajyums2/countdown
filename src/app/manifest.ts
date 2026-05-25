@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Countdown to You ♥",
+    name: "Countdown to Meghs ♥",
     short_name: "Countdown",
     description: "A journey of love, milestones, and counting down the moments.",
     start_url: "/",

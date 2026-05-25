@@ -50,3 +50,24 @@ export interface StationProgress {
   prevStation: Station | null;
   nextStation: Station | null;
 }
+
+export type ProfileId = "prajyu" | "meghs";
+
+export interface Profile {
+  identity: ProfileId;
+  name: string;
+  avatar: string;
+}
+
+export type SnapAllowance = "once" | "twice" | "keep";
+export type SnapStatus = "unread" | "viewed";
+
+export interface Snap {
+  id: string;
+  fileId: string;
+  senderId: ProfileId;
+  timestamp: string;
+  status: SnapStatus;
+  allowance: SnapAllowance;
+  view_count: number;
+}

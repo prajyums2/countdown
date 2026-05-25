@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Settings, Heart } from "lucide-react";
+import { Settings, Heart, Camera } from "lucide-react";
 import EvolutionSurprise from "@/components/surprises/EvolutionSurprise";
 import { X } from "lucide-react"; // We'll need this for the close button
 
@@ -20,6 +20,8 @@ import MilestoneCard from "@/components/MilestoneCard";
 import AdminPinGate from "@/components/AdminPinGate";
 import AdminPanel from "@/components/AdminPanel";
 import DevTimeSlider from "@/components/DevTimeSlider";
+import LiveSnap from "@/components/LiveSnap";
+import ChatDrawer from "@/components/ChatDrawer";
 
 function mapStaticMilestone(m: StaticMilestone, index: number): Milestone {
   return {
@@ -83,6 +85,7 @@ export default function Home() {
   const [showAdminPin, setShowAdminPin] = useState(false);
   const [showSecret, setShowSecret] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [showCamera, setShowCamera] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
   const loadData = useCallback(async () => {
@@ -285,10 +288,25 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* --- FIXED ADMIN ICON (Forced to Right) --- */}
+      <ChatDrawer />
+
+      <AnimatePresence>
+        {showCamera && (
+          <LiveSnap onClose={() => setShowCamera(false)} onSent={() => setShowCamera(false)} />
+        )}
+      </AnimatePresence>
+
+      <button
+        onClick={() => setShowCamera(true)}
+        className="fixed bottom-4 sm:bottom-6 left-4 sm:left-20 z-[90] p-3 rounded-full bg-white/80 backdrop-blur-md border border-rose-100/50 shadow-md shadow-rose-200/50 text-rose-400 hover:text-rose-500 hover:bg-white/90 transition-all"
+        title="Send a snap"
+      >
+        <Camera size={20} />
+      </button>
+
       <button
         onClick={() => setShowAdminPin(true)}
-        className="fixed bottom-6 right-6 z-[90] p-3 rounded-full bg-white/80 backdrop-blur-md border border-rose-100/50 shadow-md shadow-rose-200/50 text-rose-400 hover:text-rose-500 hover:bg-white/90 transition-all"
+        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-[90] p-3 rounded-full bg-white/80 backdrop-blur-md border border-rose-100/50 shadow-md shadow-rose-200/50 text-rose-400 hover:text-rose-500 hover:bg-white/90 transition-all"
         title="Admin"
       >
         <Settings size={20} />
