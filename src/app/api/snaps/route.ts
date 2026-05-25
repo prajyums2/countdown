@@ -67,6 +67,11 @@ export async function GET(request: NextRequest) {
     const action = searchParams.get("action") || "getSnaps";
     const identity = searchParams.get("identity");
 
+    if (action === "getSnaps") {
+      const data = await fetchScript({ action: "getSnaps", payload: { identity } });
+      return NextResponse.json(data);
+    }
+
     if (action === "getSnapContent") {
       const fileId = searchParams.get("fileId");
       if (!fileId) return NextResponse.json({ error: "Missing fileId" }, { status: 400 });
