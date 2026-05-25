@@ -24,7 +24,7 @@ export default function ChatDrawer({ open, onOpenChange }: ChatDrawerProps) {
     const load = async () => {
       if (document.hidden) return;
       try {
-        const data = await fetchSnaps(profile?.identity);
+        const data = await fetchSnaps();
         setSnaps(data);
       } catch {}
     };
@@ -36,7 +36,7 @@ export default function ChatDrawer({ open, onOpenChange }: ChatDrawerProps) {
       if (intervalRef.current) clearInterval(intervalRef.current);
       document.removeEventListener("visibilitychange", onVisible);
     };
-  }, [open, profile?.identity]);
+  }, [open]);
 
   const handleView = (snap: Snap) => setViewing(snap);
 
@@ -89,7 +89,7 @@ export default function ChatDrawer({ open, onOpenChange }: ChatDrawerProps) {
                   <div className="flex flex-col items-center justify-center h-full text-center space-y-2 px-4">
                     <MessageCircle size={32} className="text-rose-200" />
                     <p className="text-sm text-slate-400 font-caveat">No snaps yet</p>
-                    <p className="text-xs text-slate-300 font-caveat">Snaps you receive will appear here</p>
+                    <p className="text-xs text-slate-300 font-caveat">Snaps you send and receive will appear here</p>
                   </div>
                 )}
               </div>
@@ -106,7 +106,12 @@ export default function ChatDrawer({ open, onOpenChange }: ChatDrawerProps) {
 }
 
 function SnapCard({ snap, onView }: { snap: Snap; onView: (s: Snap) => void }) {
+  const { profile } = useProfile();
   const isUnread = snap.status === "unread";
+  const isSent = snap.senderId === profile?.identity;
+  const otherName = snap.senderId === "meghs" ? "Prajyu" : "Meghs";
+  const otherEmoji = snap.senderId === "meghs" ? "🎮" : "🌸";
+  const commentCount = snap.comments?.length || 0;
   return (
     <motion.button
       onClick={() => onView(snap)}
@@ -121,17 +126,22 @@ function SnapCard({ snap, onView }: { snap: Snap; onView: (s: Snap) => void }) {
       <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0 ${
         isUnread ? "bg-rose-100" : "bg-slate-50"
       }`}>
-        {snap.senderId === "meghs" ? "🌸" : "🎮"}
+        {otherEmoji}
       </div>
       <div className="flex-1 min-w-0">
         <p className={`text-xs sm:text-sm truncate ${isUnread ? "font-semibold text-slate-700" : "text-slate-500"}`}>
-          From {snap.senderId === "meghs" ? "Meghs" : "Prajyu"}
+          {isSent ? `To ${otherName}` : `From ${otherName}`}
         </p>
         <p className="text-[0.55rem] sm:text-[0.6rem] text-slate-400 font-caveat">
           {new Date(snap.timestamp).toLocaleString()}
         </p>
       </div>
       <div className="flex items-center gap-1.5 shrink-0">
+        {commentCount > 0 && (
+          <span className="text-[0.5rem] text-rose-400 bg-rose-50 rounded-full px-1.5 py-0.5 flex items-center gap-0.5">
+            💬 {commentCount}
+          </span>
+        )}
         <span className="text-[0.5rem] sm:text-[0.55rem] text-slate-300">{snap.allowance}</span>
         {isUnread && <span className="w-2 h-2 rounded-full bg-rose-400" />}
       </div>
